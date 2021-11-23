@@ -1,8 +1,10 @@
+import uuid
 class Transaction:
     def __init__(self, signature, transaction_type, details):
         self.signature = signature
         self.type = transaction_type
         self.details = details
+        self.id = uuid.uuid4()
         
 class TransactionDetails:
     def __init__(self, to_address, amount, target, target_input, target_result, fees):

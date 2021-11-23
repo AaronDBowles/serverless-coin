@@ -1,0 +1,3 @@
+import miner
+
+miner.start()
