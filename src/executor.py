@@ -12,18 +12,21 @@ active_executions = []
 app = Flask('executor')
 
 def start():
-    # initialize node information
+    # initialize node information, kicks off a cycle of continuous node updating
     core.peer_nodes.discover_nodes()
+    # TODO - this series of actions can definitely be improved with more intelligent threading
     get_executable_transactions()
     execute_transactions()
     
 def execute_transactions():
-    # TODO - needs a mechanism to restart this when we run out of transactions temporarily
+    # while we have transactions, execute them
     while executable_transactions.count > 0:
         execute_transaction(executable_transactions.pop())
+    # when we run out.....try again!
+    execute_transactions()
 
-def execute_transaction():
-    return True
+def execute_transaction(transaction):
+    logging.info(f'preparing to execute {transaction}')
 
 def get_executable_transactions():
     threading.Timer(30.0, get_executable_transactions).start()
