@@ -3,7 +3,7 @@ from primitives.block import Block
 import threading
 import random
 import core.sharing
-from jsonrpclib.SimpleJSONRPCServer import PooledJsonRpcServer
+from jsonrpclib.SimpleJSONRPCServer import PooledJSONRPCServer
 from multiprocessing.pool import Pool
 
 nofif_pool = Pool()
