@@ -13,7 +13,7 @@ class Block:
 
 
     def getHash(self):
-        hash = sha256()
+        hash = hashlib.sha256()
         hash.update(str(self.previous_hash).encode('utf-8'))
         hash.update(str(self.creation_time).encode('utf-8'))
         hash.update(str(self.transactions).encode('utf-8'))

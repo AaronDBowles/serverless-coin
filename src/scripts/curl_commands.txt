@@ -1,0 +1,11 @@
+# Node Control
+
+curl -d '{"jsonrpc":"2.0","id":"id","method":"start","params":[]}' localhost:666
+
+# Executor Control
+
+curl -d '{"jsonrpc":"2.0","id":"id","method":"start","params":[]}' localhost:667
+
+# Miner Control
+
+curl -d '{"jsonrpc":"2.0","id":"id","method":"start","params":[]}' localhost:668

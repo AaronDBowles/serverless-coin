@@ -1,11 +1,10 @@
-import json
+from multiprocessing.pool import ThreadPool
 from pathlib import Path
 import logging
 import threading
 from typing import List
-import connection
-from jsonrpclib.SimpleJSONRPCServer import PooledJsonRpcServer
-
+import core.connection
+from jsonrpclib.SimpleJSONRPCServer import PooledJSONRPCServer
 
 
 class NodeInfo:
@@ -19,7 +18,7 @@ class NodeInfo:
 
 node_info = NodeInfo()
 
-def register_server_functions(server: PooledJsonRpcServer):
+def register_server_functions(server: PooledJSONRPCServer):
     server.register_function(post_node_info,'post_node_info')
     server.register_function(get_node_info, 'get_node_info')
 
@@ -37,7 +36,6 @@ def discover_nodes():
     with open('resources/seed_nodes.txt') as file:
         while (line := file.readline().rstrip()):
             add_node(line)
-    update_node_info()
 
 def add_node(node_url: str):
     node_info.nodes.append(node_url)
@@ -70,14 +68,15 @@ def merge_node_info(new_node_info):
             if transaction not in node_info.executed_transactions:
                 add_executed_transaction(transaction)
 
-def update_node_info():
-    # request peer node updates from everyone in current node list, calls every 10 seconds
-    threading.Timer(10.0, update_node_info()).start()
+def update_node_info(pool: ThreadPool):
+    # request peer node updates from everyone in current node list
     current_nodes = node_info.nodes.copy()
     for node in current_nodes:
         try:
             logging.info(f'calling get_nodes from: {node}')
-            response = connection.run_command(node,"get_node_info")
+            # Enqueue the method
+            response = pool.apply_async(core.connection.run_command(node,"get_node_info"))
+            # Wait for the method to be executed
             logging.info(response)
             if response.status_code == 200:
                 merge_node_info(response)
