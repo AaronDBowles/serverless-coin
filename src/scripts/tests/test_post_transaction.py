@@ -15,12 +15,11 @@ def run_timed_transactions():
 
 def generate_transaction_details():
     to_address = uuid.uuid4()
-    target = None
-    target_input = None
+    target = 'test_target.py'
+    target_input = "{'name'='Aaron'}"
     amount = random.random()
     fees = amount * 0.001
-    target_result = None
-    details = TransactionDetails(to_address,amount,target,target_input,target_result,fees)
+    details = TransactionDetails(to_address,amount,target,target_input,fees)
     return details
 
 def generate_transaction():

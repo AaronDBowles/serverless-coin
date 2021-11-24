@@ -1,16 +1,19 @@
 import uuid
-class Transaction:
-    def __init__(self, signature, transaction_type, details):
-        self.signature = signature
-        self.type = transaction_type
-        self.details = details
-        self.id = uuid.uuid4()
-        
+
+from primitives.execution import Execution
+
 class TransactionDetails:
-    def __init__(self, to_address, amount, target, target_input, target_result, fees):
+    def __init__(self, to_address: str, amount: float, target: str, target_input: str, fees: float, executions: Execution = None):
         self.to_address = to_address
         self.amount = amount
         self.target = target
         self.target_input = target_input
-        self.target_result = target_result
         self.fees = fees
+        self.executions = executions
+
+class Transaction:
+    def __init__(self, signature: str, transaction_type: str, details: TransactionDetails):
+        self.signature = signature
+        self.type = transaction_type
+        self.details = details
+        self.id = uuid.uuid4()

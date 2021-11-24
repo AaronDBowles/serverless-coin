@@ -1,9 +1,14 @@
 import threading
-import primitives
+from typing import List
+from primitives.transaction import Transaction
+from flask import Flask
+import connexion
 
 chain = [] # TODO - add pulling chain from local storage and syncing with server
-unprocessed_transactions = []
+unexecuted_transactions = []
+executed_transactions = []
 
+app = Flask('full-node')
 def start_node():
     sync()
 
@@ -17,17 +22,27 @@ def validate_chain():
     return True
 
 # used by a wallet to submit transactions
-def post_unprocessed_transaction(transactions):
-    current_trans_dict = { trans.id:trans.details in trans for trans in unprocessed_transactions}
+def post_unexecuted_transactions(transactions):
+    current_trans_dict = { trans.id:trans.details in trans for trans in unexecuted_transactions}
     for trans in transactions:
         if current_trans_dict[trans.id] is None:
-            unprocessed_transactions.append(trans)
+            unexecuted_transactions.append(trans)
 
 
     
+# used by an executor to get transactions for execution
+def get_executable_transactions():
+    # TODO - add logic for multirun transactions
+    return unexecuted_transactions
+
+# used by an executor to post executed transactions
+def post_executed_transactions(transactions: List[Transaction]):
+    executed_transactions.append(transactions)
+
 # used by a miner to get transactions for block creation
-def get_unprocessed_transaction():
-    return unprocessed_transactions
+def get_executed_transactions():
+    return executed_transactions
+
 
 
 
