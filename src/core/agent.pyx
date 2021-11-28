@@ -1,27 +1,26 @@
-import threading
 from jsonrpclib.SimpleJSONRPCServer import PooledJSONRPCServer
 from jsonrpclib.threadpool import ThreadPool
 import sys
 import core.sharing
 
-notif_pool = None
-request_pool = None
-server = None
 
-def start():
-    if server is not None and isinstance(server,PooledJSONRPCServer):
+
+def AgentServerInfo(server: PooledJSONRPCServer, notif_pool: ThreadPool, request_pool: ThreadPool):
+    notif_pool = None
+    request_pool = None
+    server = None
+
+def start(server_info: AgentServerInfo):
+    if server_info.server is not None and isinstance(server_info.server,PooledJSONRPCServer):
         core.sharing.discover_nodes()
-        core.sharing.update_node_info(request_pool)
+        core.sharing.update_node_info(server_info.request_pool)
 
-def stop():
-    if server is not None and isinstance(server,PooledJSONRPCServer):
-        server.server_close()
+def stop(server_info: AgentServerInfo):
+    if server_info.server is not None and isinstance(server_info.server,PooledJSONRPCServer):
+        server_info.server.server_close()
     sys.exit()
 
 def create_server(host: str, port: int):
-    global notif_pool
-    global request_pool
-    global server
     nofif_pool = ThreadPool(max_threads=10)
     request_pool = ThreadPool(max_threads=10)
     nofif_pool.start()
@@ -40,6 +39,8 @@ def create_server(host: str, port: int):
 
     try:
         server.serve_forever()
+        server_info = AgentServerInfo(server,nofif_pool,request_pool)
+        return server_info
     finally:
         request_pool.stop()
         nofif_pool.stop()
