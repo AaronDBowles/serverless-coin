@@ -9,8 +9,8 @@ import json
 def run_timed_transactions():
     threading.Timer(15,run_timed_transactions).start()
     transaction = generate_transaction()
-    print(f'posting transaction {transaction}')
-    wallet.post_transaction_to_network(transaction)
+    print(f'pushing transaction {transaction}')
+    wallet.push_transaction_to_network(transaction)
 
 
 def generate_transaction_details():
