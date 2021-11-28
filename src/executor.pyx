@@ -11,10 +11,8 @@ core.agent.start()
 # this execution data is shared back with other agents  
 def execute_transactions():
     # while we have transactions, execute them
-    while core.agent.core.sharing.node_info.executable_transactions.count > 0:
-        execute_transaction(core.agent.core.sharing.node_info.executable_transactions.pop())
-    # when we run out.....try again!
-    execute_transactions()
+    while core.agent.sharing.node_info.executable_transactions.count > 0:
+        execute_transaction(core.agent.sharing.node_info.executable_transactions.pop())
 
 def execute_transaction(transaction):
     logging.info(f'preparing to execute {transaction}')

@@ -1,4 +1,3 @@
-import cython
 import logging
 import threading
 import core.agent
@@ -9,17 +8,16 @@ import core.agent
 server = core.agent.create_server('localhost', 666)
 core.agent.start()
 
-# full_nodes also have the added responsibility of storing and validating the chain
-def sync():
-    threading.Timer(10.0, sync).start()
-    validate_chain()
+# TODO - This agent needs to be responsible for a few different key tasks
+# 1. act as a full node, storing and validating the entire chain and all transactions sent to/from this node
+# 2. act as a challenger for executors, a necessary part of PoE (Proof-of-Execution)
 
-def validate_chain():
-    # TODO - grab chain from network and create/validate our copy
-    logging.info(f'chain is valid! {core.agent.core.sharing.node_info.chain}')
-    return True
+cdef generate_challenge():
+    # TODO - define challenge contract. write first challenges for protocol.
+    return {}
 
-sync()
+
+
 
 
 

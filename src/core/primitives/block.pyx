@@ -1,15 +1,12 @@
 import hashlib
-import jsonify
-import json
 from cpython.datetime cimport datetime
-
-import transaction
+from transaction import Transaction
 
 
 cdef class Block:
     cdef char* previous_hash
-    cdef transaction.Transaction[:] transactions
-    cdef datetime creation_date
+    cdef Transaction[:] transactions
+    cdef datetime creation_time
     cdef int nonce
     cdef char* hash
     def __init__(self, previous_hash, transactions):

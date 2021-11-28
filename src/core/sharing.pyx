@@ -1,18 +1,15 @@
-import threading
 import inspect
-import cython
 import logging
-
 from multiprocessing.pool import ThreadPool
 from pathlib import Path
-
-import src.core.connection
-from jsonrpclib.SimpleJSONRPCServer import PooledJSONRPCServer
 from threading import RLock
 
-from src import core
-from src.primitives.block import Block
-from src.primitives.transaction import Transaction
+from jsonrpclib.SimpleJSONRPCServer import PooledJSONRPCServer
+
+import connection
+from src.core import primitives
+
+
 
 
 cdef class Node:
@@ -24,11 +21,11 @@ cdef class Node:
 
 cdef class NodeInfo:
     cdef Node[:] nodes
-    cdef Block[:] chain
-    cdef Transaction[:] executable_transactions
-    cdef Transaction[:] executed_transactions
+    cdef primitives.block.Block[:] chain
+    cdef primitives.transaction.Transaction[:] executable_transactions
+    cdef primitives.transaction.Transaction[:] executed_transactions
     cdef int current_difficult
-    cdef Block latest_block
+    cdef primitives.transaction.Block latest_block
     cdef __init__(self):
         self.nodes = []
         self.chain = [] # TODO - add pulling chain from local storage and syncing with server
@@ -113,7 +110,7 @@ cdef broadcast_node_info_update(pool: ThreadPool):
         try:
             logging.info(f'calling get_nodes from: {node}')
             # Enqueue the method
-            response = pool.apply_async(core.connection.run_command,(node.url,"push_node_info",node_info),callback=merge_node_info)
+            response = pool.apply_async(connection.run_command,(node.url,"push_node_info",node_info),callback=merge_node_info)
             # Wait for the method to be executed
             logging.info(response)
             results.append(response)
