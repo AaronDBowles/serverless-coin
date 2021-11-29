@@ -1,14 +1,15 @@
 import hashlib
-from cpython.datetime cimport datetime
+from cpython.datetime cimport datetime as cdatetime
+import datetime
 from transaction import Transaction
 
 
 cdef class Block:
-    cdef char* previous_hash
-    cdef Transaction[:] transactions
-    cdef datetime creation_time
+    cdef str previous_hash
+    cdef transactions
+    cdef cdatetime creation_time
     cdef int nonce
-    cdef char* hash
+    cdef str hash
     def __init__(self, previous_hash, transactions):
         self.previous_hash = previous_hash
         self.transactions = transactions

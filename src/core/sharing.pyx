@@ -4,28 +4,32 @@ from multiprocessing.pool import ThreadPool
 from pathlib import Path
 from threading import RLock
 
-from jsonrpclib.SimpleJSONRPCServer import PooledJSONRPCServer
-
 import connection
-from src.core import primitives
+from primitives import block, transaction, execution, challenge
 
 
-
+cdef enum NodeType:
+    FULL_NODE,
+    EXECUTOR
 
 cdef class Node:
-    cdef char* node_type
-    cdef char* url
-    cdef __init__(self):
+    cdef NodeType node_type
+    cdef str url
+    cdef __init__(self, node_type: NodeType, url: str):
         self.node_type = None
         self.url = None
 
 cdef class NodeInfo:
     cdef Node[:] nodes
-    cdef primitives.block.Block[:] chain
-    cdef primitives.transaction.Transaction[:] executable_transactions
-    cdef primitives.transaction.Transaction[:] executed_transactions
-    cdef int current_difficult
-    cdef primitives.transaction.Block latest_block
+    cdef block.Block[:] chain
+    cdef transaction.Transaction[:] executable_transactions
+    cdef transaction.Transaction[:] executed_transactions
+    cdef int current_difficulty
+    cdef float network_validation_score
+    cdef float network_validation_threshold
+    cdef block.Block latest_block
+    cdef challenge.Challenge[:] unverified_challenges
+    cdef execution.Execution[:] unverified_executions
     cdef __init__(self):
         self.nodes = []
         self.chain = [] # TODO - add pulling chain from local storage and syncing with server
@@ -33,15 +37,13 @@ cdef class NodeInfo:
         self.executed_transactions = []
         self.current_difficulty = 0
         self.latest_block = None
+        self.network_validation_score = 0
+        self.network_validation_threshold = 0
 
-node_info = NodeInfo()
-info_lock = RLock()
+# global state, initiated by implementing agent, updated here
+node_info: NodeInfo
+info_lock: RLock
 
-
-# called by agent implementations to register any core protocol functions.
-# for now, we will try to get away with a model that persists only on pushing node_info updates to each other
-cdef register_server_functions(server: PooledJSONRPCServer):
-    server.register_function(push_node_info,'push_node_info')
 
 cdef __extract_storage_to_class(storage: str, target: object):
     # for now, we will simply store info as pipe delimited strings
@@ -57,9 +59,8 @@ cdef __extract_storage_to_class(storage: str, target: object):
 
 
 # used for initialization of peer nodes
-cdef discover_initial_nodes():
-    global node_info
-    cdef Node[:] new_nodes = []
+cdef start_node_discovery():
+    cdef new_nodes = []
     # attempt to read cached list of nodes from local storage
     try:
 
@@ -104,8 +105,9 @@ def push_node_info(new_node_info):
         merge_node_info(new_node_info)
 
 # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
-cdef broadcast_node_info_update(pool: ThreadPool):
+cdef broadcast_node_info_update():
     results = []
+    pool = ThreadPool()
     for node in node_info:
         try:
             logging.info(f'calling get_nodes from: {node}')
@@ -118,6 +120,7 @@ cdef broadcast_node_info_update(pool: ThreadPool):
                 r.wait()
         except Exception as error:
             logging.error(error)
+    return node_info
 
 # used by threads and anyone else to merge any set of node_info updates into the global node_info
 cdef merge_node_info(new_node_info: NodeInfo):
