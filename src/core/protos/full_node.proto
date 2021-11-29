@@ -1,0 +1,16 @@
+syntax="proto3";
+package full_node;
+service FullNode{
+  rpc post_node_info(NodeInfo) returns (NodeInfo){}
+}
+message Node{
+  string node_type = 1;
+  string url = 2;
+}
+message Transaction{
+
+}
+message NodeInfo{
+  repeated Node node = 1;
+  repeated Transaction executable_transaction = 2;
+}

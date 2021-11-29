@@ -1,15 +1,13 @@
 import logging
 import random
-import threading
 from multiprocessing import RLock
 from core import agent, sharing
 from core.primitives.challenge import Challenge, ChallengeTarget, EnvironmentRequirements
-from src.core.primitives.transaction import Transaction
+
+
 # most rpc and base protocol code is in the core module
 # starting an agent (full_node/miner/executor) 
 # will begin the process of syncing data with the rest of the network
-
-
 server = agent.create_server('localhost', 666)
 node_info = agent.sharing.node_info = sharing.NodeInfo()
 info_lock = agent.sharing.info_lock = RLock()
@@ -64,6 +62,7 @@ cdef generate_challenge():
         # true randomness shouldnt matter for this particular exercise
         while i < random.Random().randint():
             x[i] = random.Random().getrandbits()
+            i += i
         y = random.Random().randrange(0,x.count() -1)
         challenge_target.initial_input = {
             'x': x,
