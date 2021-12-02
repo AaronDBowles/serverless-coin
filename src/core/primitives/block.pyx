@@ -6,7 +6,7 @@ from transaction import Transaction
 
 cdef class Block:
     cdef str previous_hash
-    cdef transactions
+    cdef Transaction[:] transactions
     cdef cdatetime creation_time
     cdef int nonce
     cdef str hash
