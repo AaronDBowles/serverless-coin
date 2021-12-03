@@ -4,7 +4,8 @@ syntax="proto3";
 package full_node;
 import "google/protobuf/timestamp.proto";
 service FullNode{
-  rpc post_node_info(NodeInfo) returns (NodeInfo){}
+  rpc post_node_info(stream NodeInfo) returns (stream NodeInfo){}
+  rpc post_challenge(stream Challenge) returns (stream Challenge){}
 }
 message Node{
   string node_type = 1;
@@ -60,5 +61,6 @@ message NodeInfo{
   repeated Transaction executable_transaction = 3;
   repeated Transaction executed_transactions = 4;
   int32 current_difficulty =5;
+  repeated Challenge challenges =6;
 
 }
