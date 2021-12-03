@@ -4,8 +4,8 @@ syntax="proto3";
 package full_node;
 import "google/protobuf/timestamp.proto";
 service FullNode{
-  rpc post_node_info(stream NodeInfo) returns (stream NodeInfo){}
-  rpc post_challenge(stream Challenge) returns (stream Challenge){}
+  rpc push_node_info(NodeInfo) returns (NodeInfo){}
+  rpc push_challenge(Challenge) returns (Challenge){}
 }
 message Node{
   string node_type = 1;

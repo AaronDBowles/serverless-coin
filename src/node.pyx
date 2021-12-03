@@ -1,3 +1,4 @@
+import pyximport; pyximport.install()
 import logging
 import random
 from multiprocessing import RLock
@@ -17,6 +18,12 @@ agent.start(server)
 # TODO - This agent needs to be responsible for a few different key tasks
 # 1. act as a full node, storing and validating the entire chain and all transactions sent to/from this node
 # 2. act as a challenger for executors, a necessary part of PoE (Proof-of-Execution)
+
+cdef run_challenge_loop():
+    while True:
+        challenge = generate_challenge()
+        agent.sharing.send_targeted_challenge(challenge)
+
 
 cdef generate_challenge():
     # TODO - define challenge contract. write first challenges for protocol.

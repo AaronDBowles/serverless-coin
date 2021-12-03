@@ -14,13 +14,13 @@ class FullNodeStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.post_node_info = channel.stream_stream(
-                '/full_node.FullNode/post_node_info',
+        self.push_node_info = channel.unary_unary(
+                '/full_node.FullNode/push_node_info',
                 request_serializer=full__node__pb2.NodeInfo.SerializeToString,
                 response_deserializer=full__node__pb2.NodeInfo.FromString,
                 )
-        self.post_challenge = channel.stream_stream(
-                '/full_node.FullNode/post_challenge',
+        self.push_challenge = channel.unary_unary(
+                '/full_node.FullNode/push_challenge',
                 request_serializer=full__node__pb2.Challenge.SerializeToString,
                 response_deserializer=full__node__pb2.Challenge.FromString,
                 )
@@ -29,13 +29,13 @@ class FullNodeStub(object):
 class FullNodeServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def post_node_info(self, request_iterator, context):
+    def push_node_info(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def post_challenge(self, request_iterator, context):
+    def push_challenge(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -44,13 +44,13 @@ class FullNodeServicer(object):
 
 def add_FullNodeServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'post_node_info': grpc.stream_stream_rpc_method_handler(
-                    servicer.post_node_info,
+            'push_node_info': grpc.unary_unary_rpc_method_handler(
+                    servicer.push_node_info,
                     request_deserializer=full__node__pb2.NodeInfo.FromString,
                     response_serializer=full__node__pb2.NodeInfo.SerializeToString,
             ),
-            'post_challenge': grpc.stream_stream_rpc_method_handler(
-                    servicer.post_challenge,
+            'push_challenge': grpc.unary_unary_rpc_method_handler(
+                    servicer.push_challenge,
                     request_deserializer=full__node__pb2.Challenge.FromString,
                     response_serializer=full__node__pb2.Challenge.SerializeToString,
             ),
@@ -65,7 +65,7 @@ class FullNode(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def post_node_info(request_iterator,
+    def push_node_info(request,
             target,
             options=(),
             channel_credentials=None,
@@ -75,14 +75,14 @@ class FullNode(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/full_node.FullNode/post_node_info',
+        return grpc.experimental.unary_unary(request, target, '/full_node.FullNode/push_node_info',
             full__node__pb2.NodeInfo.SerializeToString,
             full__node__pb2.NodeInfo.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def post_challenge(request_iterator,
+    def push_challenge(request,
             target,
             options=(),
             channel_credentials=None,
@@ -92,7 +92,7 @@ class FullNode(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/full_node.FullNode/post_challenge',
+        return grpc.experimental.unary_unary(request, target, '/full_node.FullNode/push_challenge',
             full__node__pb2.Challenge.SerializeToString,
             full__node__pb2.Challenge.FromString,
             options, channel_credentials,

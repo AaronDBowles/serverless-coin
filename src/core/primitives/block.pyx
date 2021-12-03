@@ -1,4 +1,6 @@
 import hashlib
+from typing import List
+
 from cpython.datetime cimport datetime as cdatetime
 import datetime
 from transaction import Transaction
@@ -6,7 +8,7 @@ from transaction import Transaction
 
 cdef class Block:
     cdef str previous_hash
-    cdef Transaction[:] transactions
+    transactions: List[Transaction]
     cdef cdatetime creation_time
     cdef int nonce
     cdef str hash

@@ -1,14 +1,16 @@
+import pyximport; pyximport.install()
 from concurrent.futures import ThreadPoolExecutor
 
 import grpc
 from grpc import Server
 import sys
 import sharing
+from src.core.protos import full_node_pb2_grpc
 
 cdef class AgentServerInfo:
     request_pool = None
     server = None
-    cdef __init__(self, server: Server, request_pool: ThreadPoolExecutor):
+    def __init__(self, server: Server, request_pool: ThreadPoolExecutor):
         self.request_pool = request_pool
         self.server = server
 
@@ -24,11 +26,9 @@ cdef stop(server_info: AgentServerInfo):
 
 def create_server(host: str, port: int):
     request_pool = ThreadPoolExecutor()
-
-    server = grpc.server(request_pool)
-
+    server = grpc.aio.server(request_pool)
+    full_node_pb2_grpc.add_FullNodeServicer_to_server(full_node_pb2_grpc.FullNodeServicer(),server)
     server.add_insecure_port(f'[::]:{port}')
-
     try:
         server.start()
         server_info = AgentServerInfo(server,request_pool)

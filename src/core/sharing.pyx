@@ -1,36 +1,42 @@
+from typing import List
+
+import pyximport; pyximport.install()
 import inspect
 import logging
 from multiprocessing.pool import ThreadPool
 from pathlib import Path
 from threading import RLock
 
+import grpc
+
 import connection
 from primitives import block, transaction, execution, challenge
-
+from src.core.protos import full_node_pb2_grpc
 
 cdef enum NodeType:
     FULL_NODE,
     EXECUTOR
 
 cdef class Node:
-    cdef NodeType node_type
     cdef str url
-    cdef __init__(self, node_type: NodeType, url: str):
-        self.node_type = None
-        self.url = None
+    cdef NodeType node_type
+    def __init__(self, node_type: NodeType, url: str):
+        self.node_type = node_type
+        self.url = url
 
 cdef class NodeInfo:
-    cdef Node[:] nodes
-    cdef block.Block[:] chain
-    cdef transaction.Transaction[:] executable_transactions
-    cdef transaction.Transaction[:] executed_transactions
+    nodes: List[Node]
+    chain: List[block.Block]
+    executable_transactions: List[transaction.Transaction]
+    executed_transactions: List[transaction.Transaction]
     cdef int current_difficulty
     cdef float network_validation_score
     cdef float network_validation_threshold
-    cdef block.Block latest_block
-    cdef challenge.Challenge[:] unverified_challenges
-    cdef execution.Execution[:] unverified_executions
-    cdef __init__(self):
+    latest_block: block.Block
+    unverified_challenges: List[challenge.Challenge]
+    unverified_executions: List[execution.Execution]
+    targeted_challenges: List[challenge.Challenge]
+    def __init__(self):
         self.nodes = []
         self.chain = [] # TODO - add pulling chain from local storage and syncing with server
         self.executable_transactions = []
@@ -60,22 +66,27 @@ cdef __extract_storage_to_class(storage: str, target: object):
 
 # used for initialization of peer nodes
 cdef start_node_discovery():
+    global  info_lock
     cdef new_nodes = []
     # attempt to read cached list of nodes from local storage
     try:
 
-        cdef char* home = str(Path.home())
+        home = str(Path.home())
         with open(f'{home}/serverless-coin/resources/sharing.txt') as file:
-            while line := file.readline().rstrip():
+            line = file.readline().rstrip()
+            while line:
                 node_update = __extract_storage_to_class(line,Node())
                 new_nodes.append(node_update)
+                line = file.readline().rstrip()
     except Exception as error:
         logging.error(error)
     # we also go ahead and add any source nodes
     with open('resources/seed_nodes.txt') as file:
-        while line := file.readline().rstrip():
+        line = file.readline().rstrip()
+        while line:
             node_update = __extract_storage_to_class(line, Node())
             new_nodes.append(node_update)
+            line = file.readline().rstrip()
     with info_lock:
         node_info_update = NodeInfo()
         node_info.nodes = new_nodes
@@ -100,9 +111,23 @@ cdef add_executable_transaction(executable_transaction):
 # may be used by new node to tell everyone "Im here!"
 # also used by miner to submit blocks
 # must be native python function since this is outwardly exposed
-def push_node_info(new_node_info):
+def push_node_info(new_node_info, context):
+    logging.info(f'received: {new_node_info} with {context}')
     with info_lock:
         merge_node_info(new_node_info)
+
+def push_challenge(challenge, context):
+    global node_info
+    logging.info(f'received: {challenge} with {context}')
+    with info_lock:
+        node_info.targeted_challenges.append(challenge)
+
+def send_targeted_challenge(challenge: challenge.Challenge):
+    with grpc.aio.insecure_channel('localhost:667') as channel:
+        stub = full_node_pb2_grpc.FullNodeStub(channel)
+        logging.info(f'sending challenge {challenge}')
+        stub.push_challenge(challenge)
+
 
 # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
 cdef broadcast_node_info_update():
