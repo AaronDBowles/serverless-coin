@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x66ull_node.proto\x12\tfull_node\x1a\x1fgoogle/protobuf/timestamp.proto\"&\n\x04Node\x12\x11\n\tnode_type\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\x02 \x01(\t\"\x9c\x01\n\x05\x42lock\x12\x15\n\rprevious_hash\x18\x01 \x01(\t\x12,\n\x0ctransactions\x18\x02 \x03(\x0b\x32\x16.full_node.Transaction\x12\x31\n\rcreation_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\r\n\x05nonce\x18\x04 \x01(\x03\x12\x0c\n\x04hash\x18\x05 \x01(\t\"\x96\x01\n\x12TransactionDetails\x12\x12\n\nto_address\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x02\x12\x0e\n\x06target\x18\x03 \x01(\t\x12\x14\n\x0ctarget_input\x18\x04 \x01(\t\x12\x0c\n\x04\x66\x65\x65s\x18\x05 \x01(\x02\x12(\n\nchallenges\x18\x06 \x03(\x0b\x32\x14.full_node.Challenge\"~\n\x0f\x43hallengeTarget\x12\x0e\n\x06\x62inary\x18\x01 \x01(\t\x12\x15\n\rinitial_input\x18\x02 \x01(\t\x12\x44\n\x18\x65nvironment_requirements\x18\x03 \x01(\x0b\x32\".full_node.EnvironmentRequirements\"R\n\x17\x45nvironmentRequirements\x12\x18\n\x10operating_system\x18\x01 \x01(\t\x12\x1d\n\x15prerequisite_installs\x18\x02 \x03(\t\"w\n\tExecution\x12\x14\n\x0c\x63hallenge_id\x18\x01 \x01(\t\x12\x1a\n\x12\x65xecutor_signature\x18\x02 \x01(\t\x12\x13\n\x0btarget_hash\x18\x03 \x01(\t\x12\x13\n\x0bresult_hash\x18\x04 \x01(\t\x12\x0e\n\x06\x65rrors\x18\x05 \x01(\t\"\xa3\x01\n\tChallenge\x12\n\n\x02id\x18\x01 \x01(\t\x12*\n\x06target\x18\x02 \x01(\x0b\x32\x1a.full_node.ChallengeTarget\x12(\n\nexecutions\x18\x03 \x03(\x0b\x32\x14.full_node.Execution\x12\x16\n\x0etransaction_id\x18\x04 \x01(\t\x12\x1c\n\x14\x63hallenger_signature\x18\x05 \x01(\t\"j\n\x0bTransaction\x12\x11\n\tsignature\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12.\n\x07\x64\x65tails\x18\x03 \x01(\x0b\x32\x1d.full_node.TransactionDetails\x12\n\n\x02id\x18\x04 \x01(\t\"\xff\x01\n\x08NodeInfo\x12\x1d\n\x04node\x18\x01 \x03(\x0b\x32\x0f.full_node.Node\x12\x1f\n\x05\x63hain\x18\x02 \x03(\x0b\x32\x10.full_node.Block\x12\x36\n\x16\x65xecutable_transaction\x18\x03 \x03(\x0b\x32\x16.full_node.Transaction\x12\x35\n\x15\x65xecuted_transactions\x18\x04 \x03(\x0b\x32\x16.full_node.Transaction\x12\x1a\n\x12\x63urrent_difficulty\x18\x05 \x01(\x05\x12(\n\nchallenges\x18\x06 \x03(\x0b\x32\x14.full_node.Challenge2\x88\x01\n\x08\x46ullNode\x12<\n\x0epush_node_info\x12\x13.full_node.NodeInfo\x1a\x13.full_node.NodeInfo\"\x00\x12>\n\x0epush_challenge\x12\x14.full_node.Challenge\x1a\x14.full_node.Challenge\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0f\x66ull_node.proto\x12\tfull_node\x1a\x1fgoogle/protobuf/timestamp.proto\"&\n\x04Node\x12\x11\n\tnode_type\x18\x01 \x01(\t\x12\x0b\n\x03url\x18\x02 \x01(\t\"\x9c\x01\n\x05\x42lock\x12\x15\n\rprevious_hash\x18\x01 \x01(\t\x12,\n\x0ctransactions\x18\x02 \x03(\x0b\x32\x16.full_node.Transaction\x12\x31\n\rcreation_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\r\n\x05nonce\x18\x04 \x01(\x03\x12\x0c\n\x04hash\x18\x05 \x01(\t\"\x96\x01\n\x12TransactionDetails\x12\x12\n\nto_address\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x02\x12\x0e\n\x06target\x18\x03 \x01(\t\x12\x14\n\x0ctarget_input\x18\x04 \x01(\t\x12\x0c\n\x04\x66\x65\x65s\x18\x05 \x01(\x02\x12(\n\nchallenges\x18\x06 \x03(\x0b\x32\x14.full_node.Challenge\"~\n\x0f\x43hallengeTarget\x12\x0e\n\x06\x62inary\x18\x01 \x01(\t\x12\x15\n\rinitial_input\x18\x02 \x01(\t\x12\x44\n\x18\x65nvironment_requirements\x18\x03 \x01(\x0b\x32\".full_node.EnvironmentRequirements\"R\n\x17\x45nvironmentRequirements\x12\x18\n\x10operating_system\x18\x01 \x01(\t\x12\x1d\n\x15prerequisite_installs\x18\x02 \x03(\t\"w\n\tExecution\x12\x14\n\x0c\x63hallenge_id\x18\x01 \x01(\t\x12\x1a\n\x12\x65xecutor_signature\x18\x02 \x01(\t\x12\x13\n\x0btarget_hash\x18\x03 \x01(\t\x12\x13\n\x0bresult_hash\x18\x04 \x01(\t\x12\x0e\n\x06\x65rrors\x18\x05 \x01(\t\"\xa3\x01\n\tChallenge\x12\n\n\x02id\x18\x01 \x01(\t\x12*\n\x06target\x18\x02 \x01(\x0b\x32\x1a.full_node.ChallengeTarget\x12(\n\nexecutions\x18\x03 \x03(\x0b\x32\x14.full_node.Execution\x12\x16\n\x0etransaction_id\x18\x04 \x01(\t\x12\x1c\n\x14\x63hallenger_signature\x18\x05 \x01(\t\"j\n\x0bTransaction\x12\x11\n\tsignature\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12.\n\x07\x64\x65tails\x18\x03 \x01(\x0b\x32\x1d.full_node.TransactionDetails\x12\n\n\x02id\x18\x04 \x01(\t\"\x81\x02\n\x08NodeInfo\x12\x1e\n\x05nodes\x18\x01 \x03(\x0b\x32\x0f.full_node.Node\x12\x1f\n\x05\x63hain\x18\x02 \x03(\x0b\x32\x10.full_node.Block\x12\x37\n\x17\x65xecutable_transactions\x18\x03 \x03(\x0b\x32\x16.full_node.Transaction\x12\x35\n\x15\x65xecuted_transactions\x18\x04 \x03(\x0b\x32\x16.full_node.Transaction\x12\x1a\n\x12\x63urrent_difficulty\x18\x05 \x01(\x05\x12(\n\nchallenges\x18\x06 \x03(\x0b\x32\x14.full_node.Challenge2\x88\x01\n\x08\x46ullNode\x12<\n\x0epush_node_info\x12\x13.full_node.NodeInfo\x1a\x13.full_node.NodeInfo\"\x00\x12>\n\x0epush_challenge\x12\x14.full_node.Challenge\x1a\x14.full_node.Challenge\"\x00\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -460,7 +460,7 @@ _NODEINFO = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='node', full_name='full_node.NodeInfo.node', index=0,
+      name='nodes', full_name='full_node.NodeInfo.nodes', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -474,7 +474,7 @@ _NODEINFO = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='executable_transaction', full_name='full_node.NodeInfo.executable_transaction', index=2,
+      name='executable_transactions', full_name='full_node.NodeInfo.executable_transactions', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -514,7 +514,7 @@ _NODEINFO = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1023,
-  serialized_end=1278,
+  serialized_end=1280,
 )
 
 _BLOCK.fields_by_name['transactions'].message_type = _TRANSACTION
@@ -524,9 +524,9 @@ _CHALLENGETARGET.fields_by_name['environment_requirements'].message_type = _ENVI
 _CHALLENGE.fields_by_name['target'].message_type = _CHALLENGETARGET
 _CHALLENGE.fields_by_name['executions'].message_type = _EXECUTION
 _TRANSACTION.fields_by_name['details'].message_type = _TRANSACTIONDETAILS
-_NODEINFO.fields_by_name['node'].message_type = _NODE
+_NODEINFO.fields_by_name['nodes'].message_type = _NODE
 _NODEINFO.fields_by_name['chain'].message_type = _BLOCK
-_NODEINFO.fields_by_name['executable_transaction'].message_type = _TRANSACTION
+_NODEINFO.fields_by_name['executable_transactions'].message_type = _TRANSACTION
 _NODEINFO.fields_by_name['executed_transactions'].message_type = _TRANSACTION
 _NODEINFO.fields_by_name['challenges'].message_type = _CHALLENGE
 DESCRIPTOR.message_types_by_name['Node'] = _NODE
@@ -612,8 +612,8 @@ _FULLNODE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1281,
-  serialized_end=1417,
+  serialized_start=1283,
+  serialized_end=1419,
   methods=[
   _descriptor.MethodDescriptor(
     name='push_node_info',

@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import full_node_pb2 as full__node__pb2
+from . import full_node_pb2 as full__node__pb2
 
 
 class FullNodeStub(object):
