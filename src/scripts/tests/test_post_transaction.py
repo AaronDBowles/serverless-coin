@@ -6,6 +6,7 @@ import wallet
 import threading
 import json
 
+
 def run_timed_transactions():
     threading.Timer(15,run_timed_transactions).start()
     transaction = generate_transaction()

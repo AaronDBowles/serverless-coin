@@ -1,37 +1,41 @@
-from typing import List
+from concurrent.futures import ThreadPoolExecutor
+from typing import List, Any
 
 import pyximport; pyximport.install()
 import inspect
 import logging
-from multiprocessing.pool import ThreadPool
+import asyncio
 from pathlib import Path
 from threading import RLock
 
 import grpc
 
-import connection
-from primitives import block, transaction, execution, challenge
-from src.core.protos import full_node_pb2_grpc
+from src.core import connection
+from .primitives import block, transaction, execution, challenge
+from src.core.protos import full_node_pb2_grpc, full_node_pb2
+
+LOGGER = logging.getLogger()
 
 cdef enum NodeType:
     FULL_NODE,
     EXECUTOR
 
-cdef class Node:
-    cdef str url
-    cdef NodeType node_type
-    def __init__(self, node_type: NodeType, url: str):
-        self.node_type = node_type
+class Node:
+    url: str
+    node_type: NodeType
+    def __init__(self, node_type: NodeType = FULL_NODE, url: str = None):
         self.url = url
+        self.node_type = node_type
 
-cdef class NodeInfo:
+
+class NodeInfo:
     nodes: List[Node]
     chain: List[block.Block]
     executable_transactions: List[transaction.Transaction]
     executed_transactions: List[transaction.Transaction]
-    cdef int current_difficulty
-    cdef float network_validation_score
-    cdef float network_validation_threshold
+    current_difficulty: int
+    network_validation_score: float
+    network_validation_threshold: float
     latest_block: block.Block
     unverified_challenges: List[challenge.Challenge]
     unverified_executions: List[execution.Execution]
@@ -57,70 +61,85 @@ cdef __extract_storage_to_class(storage: str, target: object):
     # since we will be eventually writing to these files more
     line_data = storage.split('|')
     # arbitrarily, well store the attributes in the same order we define them in the class
-
+    LOGGER.debug(f'about to transform {line_data} into {target.__str__()}')
     # iterate through the attributes of a node and just assign data from line one by one
-    for attr in inspect.getmembers(target):
+    LOGGER.debug(f'vars {vars(target)}')
+    for attr in vars(target):
+        LOGGER.debug(f'attr: {attr}')
         # could probably write some cool code here to check for valid values based on attr type or something
-        target.__setattr__(attr[0], line_data.pop())
+        target.__setattr__(attr, line_data.pop(0))
+    return target
 
 
 # used for initialization of peer nodes
-cdef start_node_discovery():
+def start_node_discovery():
     global  info_lock
     cdef new_nodes = []
     # attempt to read cached list of nodes from local storage
     try:
-
+        # TODO - make this copy the files to the users folders if they dont exist, then read from there opposed to src
         home = str(Path.home())
-        with open(f'{home}/serverless-coin/resources/sharing.txt') as file:
+        with open(f'C:/sandbox/serverless-coin/src/resources/sharing.txt') as file:
             line = file.readline().rstrip()
             while line:
                 node_update = __extract_storage_to_class(line,Node())
                 new_nodes.append(node_update)
                 line = file.readline().rstrip()
-    except Exception as error:
-        logging.error(error)
-    # we also go ahead and add any source nodes
-    with open('resources/seed_nodes.txt') as file:
-        line = file.readline().rstrip()
-        while line:
-            node_update = __extract_storage_to_class(line, Node())
-            new_nodes.append(node_update)
+
+        # we also go ahead and add any source nodes
+        with open(f'C:/sandbox/serverless-coin/src/resources/seed_nodes.txt') as file:
             line = file.readline().rstrip()
-    with info_lock:
-        node_info_update = NodeInfo()
-        node_info.nodes = new_nodes
-        merge_node_info(node_info_update)
+            while line:
+                node_update = __extract_storage_to_class(line, Node())
+                new_nodes.append(node_update)
+                line = file.readline().rstrip()
+        with info_lock:
+            node_info_update = NodeInfo()
+            node_info.nodes = new_nodes
+            LOGGER.debug(f'about to merge seed nodes: {node_info_update.nodes}')
+            merge_node_info(node_info_update)
+    except Exception as error:
+        LOGGER.error(error)
 
 cdef add_node(node: Node):
     with info_lock:
         node_info.nodes.append(node)
-        logging.info(f'node added to peer list: {node}')
+        LOGGER.info(f'node added to peer list: {node}')
 
 cdef add_executed_transaction(executed_transaction):
     with info_lock:
         node_info.executed_transactions.append(executed_transaction)
-        logging.info(f'executed_transaction added to list: {executed_transaction}')
+        LOGGER.info(f'executed_transaction added to list: {executed_transaction}')
 
 cdef add_executable_transaction(executable_transaction):
     with info_lock:
         node_info.executable_transactions.append(executable_transaction)
-        logging.info(f'executable_transaction added to list: {executable_transaction}')
+        LOGGER.info(f'executable_transaction added to list: {executable_transaction}')
 
 # used by other nodes and executors/miners to push node information to each other
 # may be used by new node to tell everyone "Im here!"
 # also used by miner to submit blocks
 # must be native python function since this is outwardly exposed
 def push_node_info(new_node_info, context):
-    logging.info(f'received: {new_node_info} with {context}')
+    LOGGER.info(f'received: {new_node_info} with {context}')
     with info_lock:
         merge_node_info(new_node_info)
 
 def push_challenge(challenge, context):
     global node_info
-    logging.info(f'received: {challenge} with {context}')
+    LOGGER.info(f'received: {challenge} with {context}')
     with info_lock:
         node_info.targeted_challenges.append(challenge)
+
+
+def map_node_info_to_message(node_info: NodeInfo):
+    message = full_node_pb2.NodeInfo()
+    for node in node_info.nodes:
+        message_node = full_node_pb2.Node()
+        message_node.node_type = node.node_type.__str__()
+        message_node.url = node.url
+        message.nodes.append(message_node)
+    return message
 
 def send_targeted_challenge(challenge: challenge.Challenge):
     with grpc.aio.insecure_channel('localhost:667') as channel:
@@ -130,25 +149,27 @@ def send_targeted_challenge(challenge: challenge.Challenge):
 
 
 # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
-cdef broadcast_node_info_update():
+async def broadcast_node_info_update():
     results = []
-    pool = ThreadPool()
-    for node in node_info:
+    LOGGER.debug(f'nodes: {node_info.nodes}')
+    for node in node_info.nodes:
         try:
-            logging.info(f'calling get_nodes from: {node}')
-            # Enqueue the method
-            response = pool.apply_async(connection.run_command,(node.url,"push_node_info",node_info),callback=merge_node_info)
+            LOGGER.info(f'calling get_nodes from: {node}')
+            response = await connection.run_command(node.url,full_node_pb2_grpc.FullNode.push_node_info,map_node_info_to_message(node_info))
+            LOGGER.debug(f'response: {response}')
+            asyncio.create_task(future_result_merge_node_info(response["future"]))
             # Wait for the method to be executed
-            logging.info(response)
-            results.append(response)
-            for r in results:
-                r.wait()
+            LOGGER.info(response)
         except Exception as error:
-            logging.error(error)
+            LOGGER.error(error)
     return node_info
 
+async def future_result_merge_node_info(future):
+    merge_node_info(await future)
+
 # used by threads and anyone else to merge any set of node_info updates into the global node_info
-cdef merge_node_info(new_node_info: NodeInfo):
+cdef merge_node_info(new_node_info: Any):
+    LOGGER.debug(f'merging node info: {new_node_info}')
     with info_lock:
         if new_node_info.nodes is not None:
             for node in new_node_info.nodes:

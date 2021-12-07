@@ -56,9 +56,9 @@ message Transaction{
   string id = 4;
 }
 message NodeInfo{
-  repeated Node node = 1;
+  repeated Node nodes = 1;
   repeated Block chain = 2;
-  repeated Transaction executable_transaction = 3;
+  repeated Transaction executable_transactions = 3;
   repeated Transaction executed_transactions = 4;
   int32 current_difficulty =5;
   repeated Challenge challenges =6;

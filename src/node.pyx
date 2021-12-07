@@ -4,15 +4,20 @@ import random
 from multiprocessing import RLock
 from core import agent, sharing
 from core.primitives.challenge import Challenge, ChallengeTarget, EnvironmentRequirements
+import asyncio
 
+LOGGER = logging.getLogger()
 
-# most rpc and base protocol code is in the core module
-# starting an agent (full_node/miner/executor) 
-# will begin the process of syncing data with the rest of the network
-server = agent.create_server('localhost', 666)
-node_info = agent.sharing.node_info = sharing.NodeInfo()
-info_lock = agent.sharing.info_lock = RLock()
-agent.start(server)
+async def start():
+    # most rpc and base protocol code is in the core module
+    # starting an agent (full_node/miner/executor)
+    # will begin the process of syncing data with the rest of the network
+    LOGGER.debug("node.start")
+    server = await agent.create_server('localhost', 666)
+    node_info = agent.sharing.node_info = sharing.NodeInfo()
+    info_lock = agent.sharing.info_lock = RLock()
+    asyncio.create_task(agent.start(server))
+    await server.server.wait_for_termination()
 
 
 # TODO - This agent needs to be responsible for a few different key tasks
@@ -66,6 +71,7 @@ cdef generate_challenge():
         challenge_target.binary = b'def f(x,y):\n   return x[y]'
         x = []
         i = 0
+        challenge_target.compiled = compile(challenge_target.binary,"","eval")
         # true randomness shouldnt matter for this particular exercise
         while i < random.Random().randint():
             x[i] = random.Random().getrandbits()
