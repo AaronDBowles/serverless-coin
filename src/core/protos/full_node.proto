@@ -1,0 +1,66 @@
+
+
+syntax="proto3";
+package full_node;
+import "google/protobuf/timestamp.proto";
+service FullNode{
+  rpc push_node_info(NodeInfo) returns (NodeInfo){}
+  rpc push_challenge(Challenge) returns (Challenge){}
+}
+message Node{
+  string node_type = 1;
+  string url = 2;
+}
+message Block{
+  string previous_hash = 1;
+  repeated Transaction transactions = 2;
+  google.protobuf.Timestamp creation_time = 3;
+  int64 nonce = 4;
+  string hash = 5;
+}
+message TransactionDetails{
+  string to_address = 1;
+  float amount = 2;
+  string target = 3;
+  string target_input = 4;
+  float fees = 5;
+  repeated Challenge challenges = 6;
+}
+message ChallengeTarget {
+  string binary = 1;
+  string initial_input = 2;
+  EnvironmentRequirements environment_requirements = 3;
+}
+message EnvironmentRequirements {
+   string operating_system = 1;
+   repeated string prerequisite_installs = 2;
+}
+message Execution{
+  string challenge_id = 1;
+  string executor_signature = 2;
+  string target_hash = 3;
+  string result_hash = 4;
+  string errors = 5;
+}
+message Challenge{
+  string id = 1;
+    ChallengeTarget target = 2;
+    repeated Execution executions = 3;
+    string transaction_id = 4;
+    string challenger_signature = 5;
+}
+message Transaction{
+  string signature = 1;
+  string type = 2;
+  TransactionDetails details = 3;
+  string id = 4;
+}
+message NodeInfo{
+  repeated Node nodes = 1;
+  repeated Block chain = 2;
+  repeated Transaction executable_transactions = 3;
+  repeated Transaction executed_transactions = 4;
+  int32 current_difficulty =5;
+  repeated Challenge challenges =6;
+
+}
