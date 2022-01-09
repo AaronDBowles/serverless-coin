@@ -859,7 +859,7 @@ struct __pyx_defaults {
   enum __pyx_t_4core_7sharing_NodeType __pyx_arg_node_type;
 };
 
-/* "core/sharing.pyx":152
+/* "core/sharing.pyx":153
  * 
  * # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
  * async def broadcast_node_info_update():             # <<<<<<<<<<<<<<
@@ -881,7 +881,7 @@ struct __pyx_obj_4core_7sharing___pyx_scope_struct__broadcast_node_info_update {
 };
 
 
-/* "core/sharing.pyx":167
+/* "core/sharing.pyx":168
  *     return node_info
  * 
  * async def future_result_merge_node_info(future):             # <<<<<<<<<<<<<<
@@ -3224,7 +3224,7 @@ static PyObject *__pyx_pf_4core_7sharing_start_node_discovery(CYTHON_UNUSED PyOb
  *                 line = file.readline().rstrip()
  *         with info_lock:             # <<<<<<<<<<<<<<
  *             node_info_update = NodeInfo()
- *             node_info.nodes = new_nodes
+ *             node_info_update.nodes = new_nodes
  */
       /*with:*/ {
         __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_info_lock); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L3_error)
@@ -3264,7 +3264,7 @@ static PyObject *__pyx_pf_4core_7sharing_start_node_discovery(CYTHON_UNUSED PyOb
  *                 line = file.readline().rstrip()
  *         with info_lock:
  *             node_info_update = NodeInfo()             # <<<<<<<<<<<<<<
- *             node_info.nodes = new_nodes
+ *             node_info_update.nodes = new_nodes
  *             LOGGER.debug(f'about to merge seed nodes: {node_info_update.nodes}')
  */
               __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_NodeInfo); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 97, __pyx_L45_error)
@@ -3290,18 +3290,15 @@ static PyObject *__pyx_pf_4core_7sharing_start_node_discovery(CYTHON_UNUSED PyOb
               /* "core/sharing.pyx":98
  *         with info_lock:
  *             node_info_update = NodeInfo()
- *             node_info.nodes = new_nodes             # <<<<<<<<<<<<<<
+ *             node_info_update.nodes = new_nodes             # <<<<<<<<<<<<<<
  *             LOGGER.debug(f'about to merge seed nodes: {node_info_update.nodes}')
  *             merge_node_info(node_info_update)
  */
-              __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_node_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L45_error)
-              __Pyx_GOTREF(__pyx_t_1);
-              if (__Pyx_PyObject_SetAttrStr(__pyx_t_1, __pyx_n_s_nodes, __pyx_v_new_nodes) < 0) __PYX_ERR(0, 98, __pyx_L45_error)
-              __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+              if (__Pyx_PyObject_SetAttrStr(__pyx_v_node_info_update, __pyx_n_s_nodes, __pyx_v_new_nodes) < 0) __PYX_ERR(0, 98, __pyx_L45_error)
 
               /* "core/sharing.pyx":99
  *             node_info_update = NodeInfo()
- *             node_info.nodes = new_nodes
+ *             node_info_update.nodes = new_nodes
  *             LOGGER.debug(f'about to merge seed nodes: {node_info_update.nodes}')             # <<<<<<<<<<<<<<
  *             merge_node_info(node_info_update)
  *     except Exception as error:
@@ -3338,7 +3335,7 @@ static PyObject *__pyx_pf_4core_7sharing_start_node_discovery(CYTHON_UNUSED PyOb
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
               /* "core/sharing.pyx":100
- *             node_info.nodes = new_nodes
+ *             node_info_update.nodes = new_nodes
  *             LOGGER.debug(f'about to merge seed nodes: {node_info_update.nodes}')
  *             merge_node_info(node_info_update)             # <<<<<<<<<<<<<<
  *     except Exception as error:
@@ -3353,7 +3350,7 @@ static PyObject *__pyx_pf_4core_7sharing_start_node_discovery(CYTHON_UNUSED PyOb
  *                 line = file.readline().rstrip()
  *         with info_lock:             # <<<<<<<<<<<<<<
  *             node_info_update = NodeInfo()
- *             node_info.nodes = new_nodes
+ *             node_info_update.nodes = new_nodes
  */
             }
             __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -5071,7 +5068,7 @@ static PyObject *__pyx_pf_4core_7sharing_6map_node_info_to_message(CYTHON_UNUSED
  *         message.nodes.append(message_node)
  *     return message             # <<<<<<<<<<<<<<
  * 
- * def send_targeted_challenge(challenge: challenge.Challenge):
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_message);
@@ -5103,8 +5100,8 @@ static PyObject *__pyx_pf_4core_7sharing_6map_node_info_to_message(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "core/sharing.pyx":144
- *     return message
+/* "core/sharing.pyx":145
+ * 
  * 
  * def send_targeted_challenge(challenge: challenge.Challenge):             # <<<<<<<<<<<<<<
  *     with grpc.aio.insecure_channel('localhost:667') as channel:
@@ -5146,7 +5143,7 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("send_targeted_challenge", 0);
 
-  /* "core/sharing.pyx":145
+  /* "core/sharing.pyx":146
  * 
  * def send_targeted_challenge(challenge: challenge.Challenge):
  *     with grpc.aio.insecure_channel('localhost:667') as channel:             # <<<<<<<<<<<<<<
@@ -5154,12 +5151,12 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
  *         logging.info(f'sending challenge {challenge}')
  */
   /*with:*/ {
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_grpc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_grpc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_aio); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_aio); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insecure_channel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_insecure_channel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -5174,12 +5171,12 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
     }
     __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_kp_s_localhost_667) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_kp_s_localhost_667);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L3_error)
+    __pyx_t_3 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -5193,7 +5190,7 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
     }
     __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L3_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = __pyx_t_2;
@@ -5211,16 +5208,16 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
           __pyx_v_channel = __pyx_t_3;
           __pyx_t_3 = 0;
 
-          /* "core/sharing.pyx":146
+          /* "core/sharing.pyx":147
  * def send_targeted_challenge(challenge: challenge.Challenge):
  *     with grpc.aio.insecure_channel('localhost:667') as channel:
  *         stub = full_node_pb2_grpc.FullNodeStub(channel)             # <<<<<<<<<<<<<<
  *         logging.info(f'sending challenge {challenge}')
  *         stub.push_challenge(challenge)
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_full_node_pb2_grpc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L7_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_full_node_pb2_grpc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_FullNodeStub); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L7_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_FullNodeStub); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __pyx_t_1 = NULL;
@@ -5235,27 +5232,27 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
           }
           __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_v_channel) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_channel);
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L7_error)
+          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __pyx_v_stub = __pyx_t_3;
           __pyx_t_3 = 0;
 
-          /* "core/sharing.pyx":147
+          /* "core/sharing.pyx":148
  *     with grpc.aio.insecure_channel('localhost:667') as channel:
  *         stub = full_node_pb2_grpc.FullNodeStub(channel)
  *         logging.info(f'sending challenge {challenge}')             # <<<<<<<<<<<<<<
  *         stub.push_challenge(challenge)
  * 
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_logging); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L7_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_logging); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L7_error)
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_challenge, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L7_error)
+          __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_challenge, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_5 = __Pyx_PyUnicode_Concat(__pyx_kp_u_sending_challenge, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L7_error)
+          __pyx_t_5 = __Pyx_PyUnicode_Concat(__pyx_kp_u_sending_challenge, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 148, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __pyx_t_2 = NULL;
@@ -5271,19 +5268,19 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
           __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5);
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L7_error)
+          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "core/sharing.pyx":148
+          /* "core/sharing.pyx":149
  *         stub = full_node_pb2_grpc.FullNodeStub(channel)
  *         logging.info(f'sending challenge {challenge}')
  *         stub.push_challenge(challenge)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_stub, __pyx_n_s_push_challenge); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L7_error)
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_stub, __pyx_n_s_push_challenge); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_1);
           __pyx_t_5 = NULL;
           if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -5297,12 +5294,12 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
           }
           __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_5, __pyx_v_challenge) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_challenge);
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L7_error)
+          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-          /* "core/sharing.pyx":145
+          /* "core/sharing.pyx":146
  * 
  * def send_targeted_challenge(challenge: challenge.Challenge):
  *     with grpc.aio.insecure_channel('localhost:667') as channel:             # <<<<<<<<<<<<<<
@@ -5321,20 +5318,20 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("core.sharing.send_targeted_challenge", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_1, &__pyx_t_5) < 0) __PYX_ERR(0, 145, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_1, &__pyx_t_5) < 0) __PYX_ERR(0, 146, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_GOTREF(__pyx_t_5);
-          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_3, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L9_except_error)
+          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_3, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_2);
           __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 145, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 146, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_9);
           __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_9);
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-          if (__pyx_t_10 < 0) __PYX_ERR(0, 145, __pyx_L9_except_error)
+          if (__pyx_t_10 < 0) __PYX_ERR(0, 146, __pyx_L9_except_error)
           __pyx_t_11 = ((!(__pyx_t_10 != 0)) != 0);
           if (__pyx_t_11) {
             __Pyx_GIVEREF(__pyx_t_3);
@@ -5342,7 +5339,7 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
             __Pyx_XGIVEREF(__pyx_t_5);
             __Pyx_ErrRestoreWithState(__pyx_t_3, __pyx_t_1, __pyx_t_5);
             __pyx_t_3 = 0; __pyx_t_1 = 0; __pyx_t_5 = 0; 
-            __PYX_ERR(0, 145, __pyx_L9_except_error)
+            __PYX_ERR(0, 146, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5368,7 +5365,7 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
         if (__pyx_t_4) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__3, NULL);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 145, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 146, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -5383,8 +5380,8 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
     __pyx_L16:;
   }
 
-  /* "core/sharing.pyx":144
- *     return message
+  /* "core/sharing.pyx":145
+ * 
  * 
  * def send_targeted_challenge(challenge: challenge.Challenge):             # <<<<<<<<<<<<<<
  *     with grpc.aio.insecure_channel('localhost:667') as channel:
@@ -5410,7 +5407,7 @@ static PyObject *__pyx_pf_4core_7sharing_8send_targeted_challenge(CYTHON_UNUSED 
 }
 static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "core/sharing.pyx":152
+/* "core/sharing.pyx":153
  * 
  * # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
  * async def broadcast_node_info_update():             # <<<<<<<<<<<<<<
@@ -5444,12 +5441,12 @@ static PyObject *__pyx_pf_4core_7sharing_10broadcast_node_info_update(CYTHON_UNU
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_4core_7sharing___pyx_scope_struct__broadcast_node_info_update *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 152, __pyx_L1_error)
+    __PYX_ERR(0, 153, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
   {
-    __pyx_CoroutineObject *gen = __Pyx_Coroutine_New((__pyx_coroutine_body_t) __pyx_gb_4core_7sharing_12generator, __pyx_codeobj__5, (PyObject *) __pyx_cur_scope, __pyx_n_s_broadcast_node_info_update, __pyx_n_s_broadcast_node_info_update, __pyx_n_s_core_sharing); if (unlikely(!gen)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Coroutine_New((__pyx_coroutine_body_t) __pyx_gb_4core_7sharing_12generator, __pyx_codeobj__5, (PyObject *) __pyx_cur_scope, __pyx_n_s_broadcast_node_info_update, __pyx_n_s_broadcast_node_info_update, __pyx_n_s_core_sharing); if (unlikely(!gen)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -5497,42 +5494,42 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 153, __pyx_L1_error)
 
-  /* "core/sharing.pyx":153
+  /* "core/sharing.pyx":154
  * # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
  * async def broadcast_node_info_update():
  *     results = []             # <<<<<<<<<<<<<<
  *     LOGGER.debug(f'nodes: {node_info.nodes}')
  *     for node in node_info.nodes:
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_results = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/sharing.pyx":154
+  /* "core/sharing.pyx":155
  * async def broadcast_node_info_update():
  *     results = []
  *     LOGGER.debug(f'nodes: {node_info.nodes}')             # <<<<<<<<<<<<<<
  *     for node in node_info.nodes:
  *         try:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_debug); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_debug); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_node_info); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_node_info); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_nodes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_nodes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u_nodes_2, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u_nodes_2, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -5548,30 +5545,30 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "core/sharing.pyx":155
+  /* "core/sharing.pyx":156
  *     results = []
  *     LOGGER.debug(f'nodes: {node_info.nodes}')
  *     for node in node_info.nodes:             # <<<<<<<<<<<<<<
  *         try:
  *             LOGGER.info(f'calling get_nodes from: {node}')
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_node_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_node_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_nodes); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
     __pyx_t_1 = __pyx_t_3; __Pyx_INCREF(__pyx_t_1); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
   } else {
-    __pyx_t_5 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    __pyx_t_5 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 155, __pyx_L1_error)
+    __pyx_t_6 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 156, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   for (;;) {
@@ -5579,17 +5576,17 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_3); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 155, __pyx_L1_error)
+        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_3); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       } else {
         if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_3); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 155, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_3); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       }
@@ -5599,7 +5596,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 155, __pyx_L1_error)
+          else __PYX_ERR(0, 156, __pyx_L1_error)
         }
         break;
       }
@@ -5610,7 +5607,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "core/sharing.pyx":156
+    /* "core/sharing.pyx":157
  *     LOGGER.debug(f'nodes: {node_info.nodes}')
  *     for node in node_info.nodes:
  *         try:             # <<<<<<<<<<<<<<
@@ -5624,21 +5621,21 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
       __Pyx_XGOTREF(__pyx_t_9);
       /*try:*/ {
 
-        /* "core/sharing.pyx":157
+        /* "core/sharing.pyx":158
  *     for node in node_info.nodes:
  *         try:
  *             LOGGER.info(f'calling get_nodes from: {node}')             # <<<<<<<<<<<<<<
  *             response = await connection.run_command(node.url,full_node_pb2_grpc.FullNode.push_node_info,map_node_info_to_message(node_info))
  *             LOGGER.debug(f'response: {response}')
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_info); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 157, __pyx_L6_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_info); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_node, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L6_error)
+        __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_node, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_10 = __Pyx_PyUnicode_Concat(__pyx_kp_u_calling_get_nodes_from, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 157, __pyx_L6_error)
+        __pyx_t_10 = __Pyx_PyUnicode_Concat(__pyx_kp_u_calling_get_nodes_from, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 158, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_4 = NULL;
@@ -5654,36 +5651,36 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_10) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_10);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L6_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-        /* "core/sharing.pyx":158
+        /* "core/sharing.pyx":159
  *         try:
  *             LOGGER.info(f'calling get_nodes from: {node}')
  *             response = await connection.run_command(node.url,full_node_pb2_grpc.FullNode.push_node_info,map_node_info_to_message(node_info))             # <<<<<<<<<<<<<<
  *             LOGGER.debug(f'response: {response}')
  *             asyncio.create_task(future_result_merge_node_info(response["future"]))
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_connection); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_connection); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_run_command); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 158, __pyx_L6_error)
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_run_command); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_node, __pyx_n_s_url); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L6_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_node, __pyx_n_s_url); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_full_node_pb2_grpc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_full_node_pb2_grpc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_FullNode); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 158, __pyx_L6_error)
+        __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_FullNode); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_push_node_info); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L6_error)
+        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_push_node_info); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_n_s_map_node_info_to_message); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 158, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_n_s_map_node_info_to_message); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_12);
-        __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_node_info); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 158, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_node_info); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_13);
         __pyx_t_14 = NULL;
         if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_12))) {
@@ -5698,7 +5695,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         __pyx_t_11 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_12, __pyx_t_14, __pyx_t_13) : __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_t_13);
         __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 158, __pyx_L6_error)
+        if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 159, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
         __pyx_t_12 = NULL;
@@ -5716,7 +5713,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_10)) {
           PyObject *__pyx_temp[4] = {__pyx_t_12, __pyx_t_2, __pyx_t_4, __pyx_t_11};
-          __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_15, 3+__pyx_t_15); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L6_error)
+          __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_15, 3+__pyx_t_15); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L6_error)
           __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -5727,7 +5724,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
           PyObject *__pyx_temp[4] = {__pyx_t_12, __pyx_t_2, __pyx_t_4, __pyx_t_11};
-          __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_15, 3+__pyx_t_15); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L6_error)
+          __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_15, 3+__pyx_t_15); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L6_error)
           __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -5736,7 +5733,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         } else
         #endif
         {
-          __pyx_t_13 = PyTuple_New(3+__pyx_t_15); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 158, __pyx_L6_error)
+          __pyx_t_13 = PyTuple_New(3+__pyx_t_15); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 159, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_13);
           if (__pyx_t_12) {
             __Pyx_GIVEREF(__pyx_t_12); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_12); __pyx_t_12 = NULL;
@@ -5750,7 +5747,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
           __pyx_t_2 = 0;
           __pyx_t_4 = 0;
           __pyx_t_11 = 0;
-          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L6_error)
+          __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         }
@@ -5790,11 +5787,11 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
           __pyx_t_9 = __pyx_cur_scope->__pyx_t_5;
           __pyx_cur_scope->__pyx_t_5 = 0;
           __Pyx_XGOTREF(__pyx_t_9);
-          if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 158, __pyx_L6_error)
+          if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 159, __pyx_L6_error)
           __pyx_t_3 = __pyx_sent_value; __Pyx_INCREF(__pyx_t_3);
         } else {
           __pyx_t_3 = NULL;
-          if (__Pyx_PyGen_FetchStopIterationValue(&__pyx_t_3) < 0) __PYX_ERR(0, 158, __pyx_L6_error)
+          if (__Pyx_PyGen_FetchStopIterationValue(&__pyx_t_3) < 0) __PYX_ERR(0, 159, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_3);
         }
         __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_response);
@@ -5802,21 +5799,21 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         __Pyx_GIVEREF(__pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "core/sharing.pyx":159
+        /* "core/sharing.pyx":160
  *             LOGGER.info(f'calling get_nodes from: {node}')
  *             response = await connection.run_command(node.url,full_node_pb2_grpc.FullNode.push_node_info,map_node_info_to_message(node_info))
  *             LOGGER.debug(f'response: {response}')             # <<<<<<<<<<<<<<
  *             asyncio.create_task(future_result_merge_node_info(response["future"]))
  *             # Wait for the method to be executed
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 159, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 160, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_debug); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 159, __pyx_L6_error)
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_debug); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 160, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_response, __pyx_empty_unicode); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 159, __pyx_L6_error)
+        __pyx_t_10 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_response, __pyx_empty_unicode); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 160, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_11 = __Pyx_PyUnicode_Concat(__pyx_kp_u_response, __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 159, __pyx_L6_error)
+        __pyx_t_11 = __Pyx_PyUnicode_Concat(__pyx_kp_u_response, __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 160, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __pyx_t_10 = NULL;
@@ -5832,26 +5829,26 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         __pyx_t_3 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_13, __pyx_t_10, __pyx_t_11) : __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_t_11);
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L6_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-        /* "core/sharing.pyx":160
+        /* "core/sharing.pyx":161
  *             response = await connection.run_command(node.url,full_node_pb2_grpc.FullNode.push_node_info,map_node_info_to_message(node_info))
  *             LOGGER.debug(f'response: {response}')
  *             asyncio.create_task(future_result_merge_node_info(response["future"]))             # <<<<<<<<<<<<<<
  *             # Wait for the method to be executed
  *             LOGGER.info(response)
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_asyncio); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 160, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_asyncio); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 161, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_create_task); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 160, __pyx_L6_error)
+        __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_create_task); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 161, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_future_result_merge_node_info); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 160, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_future_result_merge_node_info); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 161, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_cur_scope->__pyx_v_response, __pyx_n_s_future); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L6_error)
+        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_cur_scope->__pyx_v_response, __pyx_n_s_future); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_4);
         __pyx_t_2 = NULL;
         if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_10))) {
@@ -5866,7 +5863,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         __pyx_t_13 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_10, __pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_4);
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 160, __pyx_L6_error)
+        if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 161, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __pyx_t_10 = NULL;
@@ -5882,21 +5879,21 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         __pyx_t_3 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_11, __pyx_t_10, __pyx_t_13) : __Pyx_PyObject_CallOneArg(__pyx_t_11, __pyx_t_13);
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L6_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-        /* "core/sharing.pyx":162
+        /* "core/sharing.pyx":163
  *             asyncio.create_task(future_result_merge_node_info(response["future"]))
  *             # Wait for the method to be executed
  *             LOGGER.info(response)             # <<<<<<<<<<<<<<
  *         except Exception as error:
  *             LOGGER.error(error)
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 162, __pyx_L6_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 163, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_info); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 162, __pyx_L6_error)
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_info); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 163, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         __pyx_t_11 = NULL;
@@ -5911,12 +5908,12 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         }
         __pyx_t_3 = (__pyx_t_11) ? __Pyx_PyObject_Call2Args(__pyx_t_13, __pyx_t_11, __pyx_cur_scope->__pyx_v_response) : __Pyx_PyObject_CallOneArg(__pyx_t_13, __pyx_cur_scope->__pyx_v_response);
         __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L6_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-        /* "core/sharing.pyx":156
+        /* "core/sharing.pyx":157
  *     LOGGER.debug(f'nodes: {node_info.nodes}')
  *     for node in node_info.nodes:
  *         try:             # <<<<<<<<<<<<<<
@@ -5938,7 +5935,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "core/sharing.pyx":163
+      /* "core/sharing.pyx":164
  *             # Wait for the method to be executed
  *             LOGGER.info(response)
  *         except Exception as error:             # <<<<<<<<<<<<<<
@@ -5948,7 +5945,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
       __pyx_t_15 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
       if (__pyx_t_15) {
         __Pyx_AddTraceback("core.sharing.broadcast_node_info_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
-        if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_13, &__pyx_t_11) < 0) __PYX_ERR(0, 163, __pyx_L8_except_error)
+        if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_13, &__pyx_t_11) < 0) __PYX_ERR(0, 164, __pyx_L8_except_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_GOTREF(__pyx_t_11);
@@ -5957,16 +5954,16 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_error, __pyx_t_13);
         __Pyx_GIVEREF(__pyx_t_13);
 
-        /* "core/sharing.pyx":164
+        /* "core/sharing.pyx":165
  *             LOGGER.info(response)
  *         except Exception as error:
  *             LOGGER.error(error)             # <<<<<<<<<<<<<<
  *     return node_info
  * 
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L8_except_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L8_except_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_error); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L8_except_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_error); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L8_except_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_4 = NULL;
@@ -5981,7 +5978,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
         }
         __pyx_t_10 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_cur_scope->__pyx_v_error) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_cur_scope->__pyx_v_error);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 164, __pyx_L8_except_error)
+        if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 165, __pyx_L8_except_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -5993,7 +5990,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
       goto __pyx_L8_except_error;
       __pyx_L8_except_error:;
 
-      /* "core/sharing.pyx":156
+      /* "core/sharing.pyx":157
  *     LOGGER.debug(f'nodes: {node_info.nodes}')
  *     for node in node_info.nodes:
  *         try:             # <<<<<<<<<<<<<<
@@ -6013,7 +6010,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
       __pyx_L13_try_end:;
     }
 
-    /* "core/sharing.pyx":155
+    /* "core/sharing.pyx":156
  *     results = []
  *     LOGGER.debug(f'nodes: {node_info.nodes}')
  *     for node in node_info.nodes:             # <<<<<<<<<<<<<<
@@ -6023,7 +6020,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "core/sharing.pyx":165
+  /* "core/sharing.pyx":166
  *         except Exception as error:
  *             LOGGER.error(error)
  *     return node_info             # <<<<<<<<<<<<<<
@@ -6031,14 +6028,14 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
  * async def future_result_merge_node_info(future):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_node_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_node_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = NULL; __Pyx_ReturnWithStopIteration(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   goto __pyx_L0;
   CYTHON_MAYBE_UNUSED_VAR(__pyx_cur_scope);
 
-  /* "core/sharing.pyx":152
+  /* "core/sharing.pyx":153
  * 
  * # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
  * async def broadcast_node_info_update():             # <<<<<<<<<<<<<<
@@ -6070,7 +6067,7 @@ static PyObject *__pyx_gb_4core_7sharing_12generator(__pyx_CoroutineObject *__py
 }
 static PyObject *__pyx_gb_4core_7sharing_15generator1(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "core/sharing.pyx":167
+/* "core/sharing.pyx":168
  *     return node_info
  * 
  * async def future_result_merge_node_info(future):             # <<<<<<<<<<<<<<
@@ -6104,7 +6101,7 @@ static PyObject *__pyx_pf_4core_7sharing_13future_result_merge_node_info(CYTHON_
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_4core_7sharing___pyx_scope_struct_1_future_result_merge_node_info *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 167, __pyx_L1_error)
+    __PYX_ERR(0, 168, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
@@ -6112,7 +6109,7 @@ static PyObject *__pyx_pf_4core_7sharing_13future_result_merge_node_info(CYTHON_
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_future);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_future);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Coroutine_New((__pyx_coroutine_body_t) __pyx_gb_4core_7sharing_15generator1, __pyx_codeobj__6, (PyObject *) __pyx_cur_scope, __pyx_n_s_future_result_merge_node_info, __pyx_n_s_future_result_merge_node_info, __pyx_n_s_core_sharing); if (unlikely(!gen)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Coroutine_New((__pyx_coroutine_body_t) __pyx_gb_4core_7sharing_15generator1, __pyx_codeobj__6, (PyObject *) __pyx_cur_scope, __pyx_n_s_future_result_merge_node_info, __pyx_n_s_future_result_merge_node_info, __pyx_n_s_core_sharing); if (unlikely(!gen)) __PYX_ERR(0, 168, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -6147,9 +6144,9 @@ static PyObject *__pyx_gb_4core_7sharing_15generator1(__pyx_CoroutineObject *__p
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 167, __pyx_L1_error)
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 168, __pyx_L1_error)
 
-  /* "core/sharing.pyx":168
+  /* "core/sharing.pyx":169
  * 
  * async def future_result_merge_node_info(future):
  *     merge_node_info(await future)             # <<<<<<<<<<<<<<
@@ -6166,20 +6163,20 @@ static PyObject *__pyx_gb_4core_7sharing_15generator1(__pyx_CoroutineObject *__p
     __pyx_generator->resume_label = 1;
     return __pyx_r;
     __pyx_L4_resume_from_await:;
-    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 169, __pyx_L1_error)
     __pyx_t_1 = __pyx_sent_value; __Pyx_INCREF(__pyx_t_1);
   } else {
     __pyx_t_1 = NULL;
-    if (__Pyx_PyGen_FetchStopIterationValue(&__pyx_t_1) < 0) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (__Pyx_PyGen_FetchStopIterationValue(&__pyx_t_1) < 0) __PYX_ERR(0, 169, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_2 = __pyx_f_4core_7sharing_merge_node_info(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_4core_7sharing_merge_node_info(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 169, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   CYTHON_MAYBE_UNUSED_VAR(__pyx_cur_scope);
 
-  /* "core/sharing.pyx":167
+  /* "core/sharing.pyx":168
  *     return node_info
  * 
  * async def future_result_merge_node_info(future):             # <<<<<<<<<<<<<<
@@ -6205,7 +6202,7 @@ static PyObject *__pyx_gb_4core_7sharing_15generator1(__pyx_CoroutineObject *__p
   return __pyx_r;
 }
 
-/* "core/sharing.pyx":171
+/* "core/sharing.pyx":172
  * 
  * # used by threads and anyone else to merge any set of node_info updates into the global node_info
  * cdef merge_node_info(new_node_info: Any):             # <<<<<<<<<<<<<<
@@ -6236,21 +6233,21 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("merge_node_info", 0);
 
-  /* "core/sharing.pyx":172
+  /* "core/sharing.pyx":173
  * # used by threads and anyone else to merge any set of node_info updates into the global node_info
  * cdef merge_node_info(new_node_info: Any):
  *     LOGGER.debug(f'merging node info: {new_node_info}')             # <<<<<<<<<<<<<<
  *     with info_lock:
  *         if new_node_info.nodes is not None:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_LOGGER); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_debug); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_debug); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_new_node_info, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_new_node_info, __pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u_merging_node_info, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_kp_u_merging_node_info, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -6266,12 +6263,12 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "core/sharing.pyx":173
+  /* "core/sharing.pyx":174
  * cdef merge_node_info(new_node_info: Any):
  *     LOGGER.debug(f'merging node info: {new_node_info}')
  *     with info_lock:             # <<<<<<<<<<<<<<
@@ -6279,11 +6276,11 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
  *             for node in new_node_info.nodes:
  */
   /*with:*/ {
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_info_lock); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_info_lock); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 173, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 173, __pyx_L3_error)
+    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 174, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -6297,7 +6294,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
     }
     __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 173, __pyx_L3_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 174, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6312,36 +6309,36 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
         __Pyx_XGOTREF(__pyx_t_8);
         /*try:*/ {
 
-          /* "core/sharing.pyx":174
+          /* "core/sharing.pyx":175
  *     LOGGER.debug(f'merging node info: {new_node_info}')
  *     with info_lock:
  *         if new_node_info.nodes is not None:             # <<<<<<<<<<<<<<
  *             for node in new_node_info.nodes:
  *                 if node not in node_info.nodes:
  */
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_nodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L7_error)
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_nodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_1);
           __pyx_t_9 = (__pyx_t_1 != Py_None);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __pyx_t_10 = (__pyx_t_9 != 0);
           if (__pyx_t_10) {
 
-            /* "core/sharing.pyx":175
+            /* "core/sharing.pyx":176
  *     with info_lock:
  *         if new_node_info.nodes is not None:
  *             for node in new_node_info.nodes:             # <<<<<<<<<<<<<<
  *                 if node not in node_info.nodes:
  *                     add_node(node)
  */
-            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_nodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L7_error)
+            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_nodes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_1);
             if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
               __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_11 = 0;
               __pyx_t_12 = NULL;
             } else {
-              __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L7_error)
+              __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 176, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 175, __pyx_L7_error)
+              __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 176, __pyx_L7_error)
             }
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
             for (;;) {
@@ -6349,17 +6346,17 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
                 if (likely(PyList_CheckExact(__pyx_t_3))) {
                   if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_3)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 175, __pyx_L7_error)
+                  __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 176, __pyx_L7_error)
                   #else
-                  __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L7_error)
+                  __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L7_error)
                   __Pyx_GOTREF(__pyx_t_1);
                   #endif
                 } else {
                   if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 175, __pyx_L7_error)
+                  __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 176, __pyx_L7_error)
                   #else
-                  __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L7_error)
+                  __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L7_error)
                   __Pyx_GOTREF(__pyx_t_1);
                   #endif
                 }
@@ -6369,7 +6366,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
                   PyObject* exc_type = PyErr_Occurred();
                   if (exc_type) {
                     if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                    else __PYX_ERR(0, 175, __pyx_L7_error)
+                    else __PYX_ERR(0, 176, __pyx_L7_error)
                   }
                   break;
                 }
@@ -6378,35 +6375,35 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
               __Pyx_XDECREF_SET(__pyx_v_node, __pyx_t_1);
               __pyx_t_1 = 0;
 
-              /* "core/sharing.pyx":176
+              /* "core/sharing.pyx":177
  *         if new_node_info.nodes is not None:
  *             for node in new_node_info.nodes:
  *                 if node not in node_info.nodes:             # <<<<<<<<<<<<<<
  *                     add_node(node)
  *         if new_node_info.executable_transactions is not None:
  */
-              __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_node_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L7_error)
+              __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_node_info); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_1);
-              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_nodes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L7_error)
+              __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_nodes); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 177, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_4);
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-              __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_node, __pyx_t_4, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 176, __pyx_L7_error)
+              __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_node, __pyx_t_4, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 177, __pyx_L7_error)
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               __pyx_t_9 = (__pyx_t_10 != 0);
               if (__pyx_t_9) {
 
-                /* "core/sharing.pyx":177
+                /* "core/sharing.pyx":178
  *             for node in new_node_info.nodes:
  *                 if node not in node_info.nodes:
  *                     add_node(node)             # <<<<<<<<<<<<<<
  *         if new_node_info.executable_transactions is not None:
  *             for transaction in new_node_info.executable_transactions:
  */
-                __pyx_t_4 = __pyx_f_4core_7sharing_add_node(__pyx_v_node); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 177, __pyx_L7_error)
+                __pyx_t_4 = __pyx_f_4core_7sharing_add_node(__pyx_v_node); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L7_error)
                 __Pyx_GOTREF(__pyx_t_4);
                 __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-                /* "core/sharing.pyx":176
+                /* "core/sharing.pyx":177
  *         if new_node_info.nodes is not None:
  *             for node in new_node_info.nodes:
  *                 if node not in node_info.nodes:             # <<<<<<<<<<<<<<
@@ -6415,7 +6412,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
  */
               }
 
-              /* "core/sharing.pyx":175
+              /* "core/sharing.pyx":176
  *     with info_lock:
  *         if new_node_info.nodes is not None:
  *             for node in new_node_info.nodes:             # <<<<<<<<<<<<<<
@@ -6425,7 +6422,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
             }
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-            /* "core/sharing.pyx":174
+            /* "core/sharing.pyx":175
  *     LOGGER.debug(f'merging node info: {new_node_info}')
  *     with info_lock:
  *         if new_node_info.nodes is not None:             # <<<<<<<<<<<<<<
@@ -6434,36 +6431,36 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
  */
           }
 
-          /* "core/sharing.pyx":178
+          /* "core/sharing.pyx":179
  *                 if node not in node_info.nodes:
  *                     add_node(node)
  *         if new_node_info.executable_transactions is not None:             # <<<<<<<<<<<<<<
  *             for transaction in new_node_info.executable_transactions:
  *                 if transaction not in node_info.executable_transactions:
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_executable_transactions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L7_error)
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_executable_transactions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_3);
           __pyx_t_9 = (__pyx_t_3 != Py_None);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __pyx_t_10 = (__pyx_t_9 != 0);
           if (__pyx_t_10) {
 
-            /* "core/sharing.pyx":179
+            /* "core/sharing.pyx":180
  *                     add_node(node)
  *         if new_node_info.executable_transactions is not None:
  *             for transaction in new_node_info.executable_transactions:             # <<<<<<<<<<<<<<
  *                 if transaction not in node_info.executable_transactions:
  *                     add_executable_transaction(transaction)
  */
-            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_executable_transactions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_executable_transactions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
               __pyx_t_4 = __pyx_t_3; __Pyx_INCREF(__pyx_t_4); __pyx_t_11 = 0;
               __pyx_t_12 = NULL;
             } else {
-              __pyx_t_11 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L7_error)
+              __pyx_t_11 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_12 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 179, __pyx_L7_error)
+              __pyx_t_12 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 180, __pyx_L7_error)
             }
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             for (;;) {
@@ -6471,17 +6468,17 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
                 if (likely(PyList_CheckExact(__pyx_t_4))) {
                   if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_4)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_3 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 179, __pyx_L7_error)
+                  __pyx_t_3 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 180, __pyx_L7_error)
                   #else
-                  __pyx_t_3 = PySequence_ITEM(__pyx_t_4, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L7_error)
+                  __pyx_t_3 = PySequence_ITEM(__pyx_t_4, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L7_error)
                   __Pyx_GOTREF(__pyx_t_3);
                   #endif
                 } else {
                   if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_4)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 179, __pyx_L7_error)
+                  __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_11); __Pyx_INCREF(__pyx_t_3); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 180, __pyx_L7_error)
                   #else
-                  __pyx_t_3 = PySequence_ITEM(__pyx_t_4, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L7_error)
+                  __pyx_t_3 = PySequence_ITEM(__pyx_t_4, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L7_error)
                   __Pyx_GOTREF(__pyx_t_3);
                   #endif
                 }
@@ -6491,7 +6488,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
                   PyObject* exc_type = PyErr_Occurred();
                   if (exc_type) {
                     if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                    else __PYX_ERR(0, 179, __pyx_L7_error)
+                    else __PYX_ERR(0, 180, __pyx_L7_error)
                   }
                   break;
                 }
@@ -6500,35 +6497,35 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
               __Pyx_XDECREF_SET(__pyx_v_transaction, __pyx_t_3);
               __pyx_t_3 = 0;
 
-              /* "core/sharing.pyx":180
+              /* "core/sharing.pyx":181
  *         if new_node_info.executable_transactions is not None:
  *             for transaction in new_node_info.executable_transactions:
  *                 if transaction not in node_info.executable_transactions:             # <<<<<<<<<<<<<<
  *                     add_executable_transaction(transaction)
  *         if new_node_info.executed_transactions is not None:
  */
-              __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_node_info); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L7_error)
+              __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_node_info); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 181, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_3);
-              __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_executable_transactions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L7_error)
+              __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_executable_transactions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_1);
               __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-              __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_transaction, __pyx_t_1, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 180, __pyx_L7_error)
+              __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_transaction, __pyx_t_1, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 181, __pyx_L7_error)
               __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
               __pyx_t_9 = (__pyx_t_10 != 0);
               if (__pyx_t_9) {
 
-                /* "core/sharing.pyx":181
+                /* "core/sharing.pyx":182
  *             for transaction in new_node_info.executable_transactions:
  *                 if transaction not in node_info.executable_transactions:
  *                     add_executable_transaction(transaction)             # <<<<<<<<<<<<<<
  *         if new_node_info.executed_transactions is not None:
  *             for transaction in new_node_info.executed_transactions:
  */
-                __pyx_t_1 = __pyx_f_4core_7sharing_add_executable_transaction(__pyx_v_transaction); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L7_error)
+                __pyx_t_1 = __pyx_f_4core_7sharing_add_executable_transaction(__pyx_v_transaction); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L7_error)
                 __Pyx_GOTREF(__pyx_t_1);
                 __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-                /* "core/sharing.pyx":180
+                /* "core/sharing.pyx":181
  *         if new_node_info.executable_transactions is not None:
  *             for transaction in new_node_info.executable_transactions:
  *                 if transaction not in node_info.executable_transactions:             # <<<<<<<<<<<<<<
@@ -6537,7 +6534,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
  */
               }
 
-              /* "core/sharing.pyx":179
+              /* "core/sharing.pyx":180
  *                     add_node(node)
  *         if new_node_info.executable_transactions is not None:
  *             for transaction in new_node_info.executable_transactions:             # <<<<<<<<<<<<<<
@@ -6547,7 +6544,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
             }
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-            /* "core/sharing.pyx":178
+            /* "core/sharing.pyx":179
  *                 if node not in node_info.nodes:
  *                     add_node(node)
  *         if new_node_info.executable_transactions is not None:             # <<<<<<<<<<<<<<
@@ -6556,36 +6553,36 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
  */
           }
 
-          /* "core/sharing.pyx":182
+          /* "core/sharing.pyx":183
  *                 if transaction not in node_info.executable_transactions:
  *                     add_executable_transaction(transaction)
  *         if new_node_info.executed_transactions is not None:             # <<<<<<<<<<<<<<
  *             for transaction in new_node_info.executed_transactions:
  *                 if transaction not in node_info.executed_transactions:
  */
-          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_executed_transactions); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 182, __pyx_L7_error)
+          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_executed_transactions); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_4);
           __pyx_t_9 = (__pyx_t_4 != Py_None);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           __pyx_t_10 = (__pyx_t_9 != 0);
           if (__pyx_t_10) {
 
-            /* "core/sharing.pyx":183
+            /* "core/sharing.pyx":184
  *                     add_executable_transaction(transaction)
  *         if new_node_info.executed_transactions is not None:
  *             for transaction in new_node_info.executed_transactions:             # <<<<<<<<<<<<<<
  *                 if transaction not in node_info.executed_transactions:
  *                     add_executed_transaction(transaction)
  */
-            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_executed_transactions); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L7_error)
+            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_new_node_info, __pyx_n_s_executed_transactions); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
               __pyx_t_1 = __pyx_t_4; __Pyx_INCREF(__pyx_t_1); __pyx_t_11 = 0;
               __pyx_t_12 = NULL;
             } else {
-              __pyx_t_11 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L7_error)
+              __pyx_t_11 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_1);
-              __pyx_t_12 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 183, __pyx_L7_error)
+              __pyx_t_12 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 184, __pyx_L7_error)
             }
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             for (;;) {
@@ -6593,17 +6590,17 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
                 if (likely(PyList_CheckExact(__pyx_t_1))) {
                   if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_1)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 183, __pyx_L7_error)
+                  __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 184, __pyx_L7_error)
                   #else
-                  __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L7_error)
+                  __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L7_error)
                   __Pyx_GOTREF(__pyx_t_4);
                   #endif
                 } else {
                   if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
                   #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 183, __pyx_L7_error)
+                  __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 184, __pyx_L7_error)
                   #else
-                  __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L7_error)
+                  __pyx_t_4 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L7_error)
                   __Pyx_GOTREF(__pyx_t_4);
                   #endif
                 }
@@ -6613,7 +6610,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
                   PyObject* exc_type = PyErr_Occurred();
                   if (exc_type) {
                     if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                    else __PYX_ERR(0, 183, __pyx_L7_error)
+                    else __PYX_ERR(0, 184, __pyx_L7_error)
                   }
                   break;
                 }
@@ -6622,35 +6619,35 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
               __Pyx_XDECREF_SET(__pyx_v_transaction, __pyx_t_4);
               __pyx_t_4 = 0;
 
-              /* "core/sharing.pyx":184
+              /* "core/sharing.pyx":185
  *         if new_node_info.executed_transactions is not None:
  *             for transaction in new_node_info.executed_transactions:
  *                 if transaction not in node_info.executed_transactions:             # <<<<<<<<<<<<<<
  *                     add_executed_transaction(transaction)
  * 
  */
-              __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_node_info); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L7_error)
+              __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_node_info); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_4);
-              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_executed_transactions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L7_error)
+              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_executed_transactions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_3);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-              __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_transaction, __pyx_t_3, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 184, __pyx_L7_error)
+              __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_transaction, __pyx_t_3, Py_NE)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 185, __pyx_L7_error)
               __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
               __pyx_t_9 = (__pyx_t_10 != 0);
               if (__pyx_t_9) {
 
-                /* "core/sharing.pyx":185
+                /* "core/sharing.pyx":186
  *             for transaction in new_node_info.executed_transactions:
  *                 if transaction not in node_info.executed_transactions:
  *                     add_executed_transaction(transaction)             # <<<<<<<<<<<<<<
  * 
  * # Not going to even bother fixing this for now, would like to explore a completely push based model
  */
-                __pyx_t_3 = __pyx_f_4core_7sharing_add_executed_transaction(__pyx_v_transaction); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L7_error)
+                __pyx_t_3 = __pyx_f_4core_7sharing_add_executed_transaction(__pyx_v_transaction); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L7_error)
                 __Pyx_GOTREF(__pyx_t_3);
                 __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-                /* "core/sharing.pyx":184
+                /* "core/sharing.pyx":185
  *         if new_node_info.executed_transactions is not None:
  *             for transaction in new_node_info.executed_transactions:
  *                 if transaction not in node_info.executed_transactions:             # <<<<<<<<<<<<<<
@@ -6659,7 +6656,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
  */
               }
 
-              /* "core/sharing.pyx":183
+              /* "core/sharing.pyx":184
  *                     add_executable_transaction(transaction)
  *         if new_node_info.executed_transactions is not None:
  *             for transaction in new_node_info.executed_transactions:             # <<<<<<<<<<<<<<
@@ -6669,7 +6666,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
             }
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "core/sharing.pyx":182
+            /* "core/sharing.pyx":183
  *                 if transaction not in node_info.executable_transactions:
  *                     add_executable_transaction(transaction)
  *         if new_node_info.executed_transactions is not None:             # <<<<<<<<<<<<<<
@@ -6678,7 +6675,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
  */
           }
 
-          /* "core/sharing.pyx":173
+          /* "core/sharing.pyx":174
  * cdef merge_node_info(new_node_info: Any):
  *     LOGGER.debug(f'merging node info: {new_node_info}')
  *     with info_lock:             # <<<<<<<<<<<<<<
@@ -6697,20 +6694,20 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("core.sharing.merge_node_info", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 173, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 174, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L9_except_error)
+          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_2);
           __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, NULL);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 173, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 174, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_13);
           __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_13);
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-          if (__pyx_t_9 < 0) __PYX_ERR(0, 173, __pyx_L9_except_error)
+          if (__pyx_t_9 < 0) __PYX_ERR(0, 174, __pyx_L9_except_error)
           __pyx_t_10 = ((!(__pyx_t_9 != 0)) != 0);
           if (__pyx_t_10) {
             __Pyx_GIVEREF(__pyx_t_1);
@@ -6718,7 +6715,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
             __Pyx_XGIVEREF(__pyx_t_4);
             __Pyx_ErrRestoreWithState(__pyx_t_1, __pyx_t_3, __pyx_t_4);
             __pyx_t_1 = 0; __pyx_t_3 = 0; __pyx_t_4 = 0; 
-            __PYX_ERR(0, 173, __pyx_L9_except_error)
+            __PYX_ERR(0, 174, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6744,7 +6741,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
         if (__pyx_t_5) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_tuple__3, NULL);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 173, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 174, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -6759,7 +6756,7 @@ static PyObject *__pyx_f_4core_7sharing_merge_node_info(PyObject *__pyx_v_new_no
     __pyx_L28:;
   }
 
-  /* "core/sharing.pyx":171
+  /* "core/sharing.pyx":172
  * 
  * # used by threads and anyone else to merge any set of node_info updates into the global node_info
  * cdef merge_node_info(new_node_info: Any):             # <<<<<<<<<<<<<<
@@ -7311,41 +7308,41 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__17);
   __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_core_sharing_pyx, __pyx_n_s_map_node_info_to_message, 135, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 135, __pyx_L1_error)
 
-  /* "core/sharing.pyx":144
- *     return message
+  /* "core/sharing.pyx":145
+ * 
  * 
  * def send_targeted_challenge(challenge: challenge.Challenge):             # <<<<<<<<<<<<<<
  *     with grpc.aio.insecure_channel('localhost:667') as channel:
  *         stub = full_node_pb2_grpc.FullNodeStub(channel)
  */
-  __pyx_tuple__19 = PyTuple_Pack(3, __pyx_n_s_challenge, __pyx_n_s_channel, __pyx_n_s_stub); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(3, __pyx_n_s_challenge, __pyx_n_s_channel, __pyx_n_s_stub); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_core_sharing_pyx, __pyx_n_s_send_targeted_challenge, 144, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_core_sharing_pyx, __pyx_n_s_send_targeted_challenge, 145, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 145, __pyx_L1_error)
 
-  /* "core/sharing.pyx":152
+  /* "core/sharing.pyx":153
  * 
  * # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
  * async def broadcast_node_info_update():             # <<<<<<<<<<<<<<
  *     results = []
  *     LOGGER.debug(f'nodes: {node_info.nodes}')
  */
-  __pyx_tuple__21 = PyTuple_Pack(4, __pyx_n_s_results, __pyx_n_s_node, __pyx_n_s_response_2, __pyx_n_s_error); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(4, __pyx_n_s_results, __pyx_n_s_node, __pyx_n_s_response_2, __pyx_n_s_error); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_core_sharing_pyx, __pyx_n_s_broadcast_node_info_update, 152, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_core_sharing_pyx, __pyx_n_s_broadcast_node_info_update, 153, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 153, __pyx_L1_error)
 
-  /* "core/sharing.pyx":167
+  /* "core/sharing.pyx":168
  *     return node_info
  * 
  * async def future_result_merge_node_info(future):             # <<<<<<<<<<<<<<
  *     merge_node_info(await future)
  * 
  */
-  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_n_s_future); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_n_s_future); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_core_sharing_pyx, __pyx_n_s_future_result_merge_node_info, 167, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_core_sharing_pyx, __pyx_n_s_future_result_merge_node_info, 168, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -7401,7 +7398,7 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_4core_7sharing___pyx_scope_struct__broadcast_node_info_update) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4core_7sharing___pyx_scope_struct__broadcast_node_info_update) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_4core_7sharing___pyx_scope_struct__broadcast_node_info_update.tp_print = 0;
   #endif
@@ -7409,7 +7406,7 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_type_4core_7sharing___pyx_scope_struct__broadcast_node_info_update.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
   }
   __pyx_ptype_4core_7sharing___pyx_scope_struct__broadcast_node_info_update = &__pyx_type_4core_7sharing___pyx_scope_struct__broadcast_node_info_update;
-  if (PyType_Ready(&__pyx_type_4core_7sharing___pyx_scope_struct_1_future_result_merge_node_info) < 0) __PYX_ERR(0, 167, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_4core_7sharing___pyx_scope_struct_1_future_result_merge_node_info) < 0) __PYX_ERR(0, 168, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_4core_7sharing___pyx_scope_struct_1_future_result_merge_node_info.tp_print = 0;
   #endif
@@ -8043,40 +8040,40 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_map_node_info_to_message, __pyx_t_2) < 0) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/sharing.pyx":144
- *     return message
+  /* "core/sharing.pyx":145
+ * 
  * 
  * def send_targeted_challenge(challenge: challenge.Challenge):             # <<<<<<<<<<<<<<
  *     with grpc.aio.insecure_channel('localhost:667') as channel:
  *         stub = full_node_pb2_grpc.FullNodeStub(channel)
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_4core_7sharing_9send_targeted_challenge, NULL, __pyx_n_s_core_sharing); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_4core_7sharing_9send_targeted_challenge, NULL, __pyx_n_s_core_sharing); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_send_targeted_challenge, __pyx_t_2) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_send_targeted_challenge, __pyx_t_2) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/sharing.pyx":152
+  /* "core/sharing.pyx":153
  * 
  * # broadcast our node_info to other nodes, and if we receive node_info in return, merge it
  * async def broadcast_node_info_update():             # <<<<<<<<<<<<<<
  *     results = []
  *     LOGGER.debug(f'nodes: {node_info.nodes}')
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_4core_7sharing_11broadcast_node_info_update, NULL, __pyx_n_s_core_sharing); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_4core_7sharing_11broadcast_node_info_update, NULL, __pyx_n_s_core_sharing); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_broadcast_node_info_update, __pyx_t_2) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_broadcast_node_info_update, __pyx_t_2) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/sharing.pyx":167
+  /* "core/sharing.pyx":168
  *     return node_info
  * 
  * async def future_result_merge_node_info(future):             # <<<<<<<<<<<<<<
  *     merge_node_info(await future)
  * 
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_4core_7sharing_14future_result_merge_node_info, NULL, __pyx_n_s_core_sharing); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_4core_7sharing_14future_result_merge_node_info, NULL, __pyx_n_s_core_sharing); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_future_result_merge_node_info, __pyx_t_2) < 0) __PYX_ERR(0, 167, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_future_result_merge_node_info, __pyx_t_2) < 0) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "core/sharing.pyx":1

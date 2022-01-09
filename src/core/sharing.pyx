@@ -36,7 +36,7 @@ class NodeInfo:
     current_difficulty: int
     network_validation_score: float
     network_validation_threshold: float
-    latest_block: block.Block
+    latest_block: block.Block.__or__(None)
     unverified_challenges: List[challenge.Challenge]
     unverified_executions: List[execution.Execution]
     targeted_challenges: List[challenge.Challenge]
@@ -95,7 +95,7 @@ def start_node_discovery():
                 line = file.readline().rstrip()
         with info_lock:
             node_info_update = NodeInfo()
-            node_info.nodes = new_nodes
+            node_info_update.nodes = new_nodes
             LOGGER.debug(f'about to merge seed nodes: {node_info_update.nodes}')
             merge_node_info(node_info_update)
     except Exception as error:
@@ -140,6 +140,7 @@ def map_node_info_to_message(node_info: NodeInfo):
         message_node.url = node.url
         message.nodes.append(message_node)
     return message
+
 
 def send_targeted_challenge(challenge: challenge.Challenge):
     with grpc.aio.insecure_channel('localhost:667') as channel:
