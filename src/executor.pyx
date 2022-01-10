@@ -27,7 +27,7 @@ async def start():
 async def execute_challenges(server: AgentServerInfo):
     # while we have transactions, execute them
     # try various multi processing techniques here, may need to rely on data bundled with the execution challenge
-    while agent.sharing.node_info.targeted_challenges.count() > 0:
+    while agent.sharing.node_info.targeted_challenges.__len__() > 0:
         server.request_pool.submit(execute_challenge(agent.sharing.node_info.targeted_challenges[0]))
 
 async def execute_challenge(challenge: challenge.Challenge):

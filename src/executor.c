@@ -1468,6 +1468,7 @@ int __pyx_module_is_main_executor = 0;
 static PyObject *__pyx_builtin_eval;
 static const char __pyx_k_e[] = "e";
 static const char __pyx_k_id[] = "id";
+static const char __pyx_k_len[] = "__len__";
 static const char __pyx_k_pop[] = "pop";
 static const char __pyx_k_args[] = "args";
 static const char __pyx_k_core[] = "core";
@@ -1482,7 +1483,6 @@ static const char __pyx_k_RLock[] = "RLock";
 static const char __pyx_k_agent[] = "agent";
 static const char __pyx_k_await[] = "__await__";
 static const char __pyx_k_close[] = "close";
-static const char __pyx_k_count[] = "count";
 static const char __pyx_k_debug[] = "debug";
 static const char __pyx_k_enter[] = "__enter__";
 static const char __pyx_k_error[] = "error";
@@ -1547,7 +1547,6 @@ static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_close;
 static PyObject *__pyx_n_s_core;
 static PyObject *__pyx_n_s_core_primitives;
-static PyObject *__pyx_n_s_count;
 static PyObject *__pyx_n_s_create_server;
 static PyObject *__pyx_n_s_create_task;
 static PyObject *__pyx_n_s_debug;
@@ -1568,6 +1567,7 @@ static PyObject *__pyx_n_s_info;
 static PyObject *__pyx_n_s_info_lock;
 static PyObject *__pyx_n_s_inspect;
 static PyObject *__pyx_n_s_install;
+static PyObject *__pyx_n_s_len;
 static PyObject *__pyx_n_s_localhost;
 static PyObject *__pyx_n_s_logging;
 static PyObject *__pyx_n_s_main;
@@ -2096,7 +2096,7 @@ static PyObject *__pyx_gb_8executor_5generator1(__pyx_CoroutineObject *__pyx_gen
   /* "executor.pyx":30
  *     # while we have transactions, execute them
  *     # try various multi processing techniques here, may need to rely on data bundled with the execution challenge
- *     while agent.sharing.node_info.targeted_challenges.count() > 0:             # <<<<<<<<<<<<<<
+ *     while agent.sharing.node_info.targeted_challenges.__len__() > 0:             # <<<<<<<<<<<<<<
  *         server.request_pool.submit(execute_challenge(agent.sharing.node_info.targeted_challenges[0]))
  * 
  */
@@ -2112,7 +2112,7 @@ static PyObject *__pyx_gb_8executor_5generator1(__pyx_CoroutineObject *__pyx_gen
     __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_targeted_challenges); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_len); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -2138,7 +2138,7 @@ static PyObject *__pyx_gb_8executor_5generator1(__pyx_CoroutineObject *__pyx_gen
 
     /* "executor.pyx":31
  *     # try various multi processing techniques here, may need to rely on data bundled with the execution challenge
- *     while agent.sharing.node_info.targeted_challenges.count() > 0:
+ *     while agent.sharing.node_info.targeted_challenges.__len__() > 0:
  *         server.request_pool.submit(execute_challenge(agent.sharing.node_info.targeted_challenges[0]))             # <<<<<<<<<<<<<<
  * 
  * async def execute_challenge(challenge: challenge.Challenge):
@@ -3294,7 +3294,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_close, __pyx_k_close, sizeof(__pyx_k_close), 0, 0, 1, 1},
   {&__pyx_n_s_core, __pyx_k_core, sizeof(__pyx_k_core), 0, 0, 1, 1},
   {&__pyx_n_s_core_primitives, __pyx_k_core_primitives, sizeof(__pyx_k_core_primitives), 0, 0, 1, 1},
-  {&__pyx_n_s_count, __pyx_k_count, sizeof(__pyx_k_count), 0, 0, 1, 1},
   {&__pyx_n_s_create_server, __pyx_k_create_server, sizeof(__pyx_k_create_server), 0, 0, 1, 1},
   {&__pyx_n_s_create_task, __pyx_k_create_task, sizeof(__pyx_k_create_task), 0, 0, 1, 1},
   {&__pyx_n_s_debug, __pyx_k_debug, sizeof(__pyx_k_debug), 0, 0, 1, 1},
@@ -3315,6 +3314,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_info_lock, __pyx_k_info_lock, sizeof(__pyx_k_info_lock), 0, 0, 1, 1},
   {&__pyx_n_s_inspect, __pyx_k_inspect, sizeof(__pyx_k_inspect), 0, 0, 1, 1},
   {&__pyx_n_s_install, __pyx_k_install, sizeof(__pyx_k_install), 0, 0, 1, 1},
+  {&__pyx_n_s_len, __pyx_k_len, sizeof(__pyx_k_len), 0, 0, 1, 1},
   {&__pyx_n_s_localhost, __pyx_k_localhost, sizeof(__pyx_k_localhost), 0, 0, 1, 1},
   {&__pyx_n_s_logging, __pyx_k_logging, sizeof(__pyx_k_logging), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},

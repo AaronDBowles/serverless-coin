@@ -48,7 +48,7 @@ cdef generate_challenge():
     # if we are at an appropriate threshold on the network of validations per executor per block
     # and we have user created executable transactions waiting to be processed
     if agent.sharing.node_info.network_validation_score > agent.sharing.node_info.network_validation_threshold and \
-        agent.sharing.node_info.executable_transactions.count() > 0:
+        agent.sharing.node_info.executable_transactions.__len__() > 0:
         challenge = Challenge()
         challenge_target = ChallengeTarget()
         # we wont actually pop the transaction off the stack until we successfully send it to someone and will be
@@ -61,7 +61,7 @@ cdef generate_challenge():
         return challenge
     # if we have no user transactions, challenge someone
     if agent.sharing.node_info.network_validation_score > agent.sharing.node_info.network_validation_threshold and \
-        agent.sharing.node_info.executable_transactions.count() == 0:
+        agent.sharing.node_info.executable_transactions.__list__() == 0:
         challenge = Challenge()
         challenge_target = ChallengeTarget()
         # a simple test to see if the executor returns the correct element of a given array
@@ -76,7 +76,7 @@ cdef generate_challenge():
         while i < random.Random().randint():
             x[i] = random.Random().getrandbits()
             i += i
-        y = random.Random().randrange(0,x.count() -1)
+        y = random.Random().randrange(0,x.__len__() -1)
         challenge_target.initial_input = {
             'x': x,
             'y': y

@@ -49,6 +49,9 @@ class NodeInfo:
         self.latest_block = None
         self.network_validation_score = 0
         self.network_validation_threshold = 0
+        self.unverified_challenges = []
+        self.unverified_executions = []
+        self.targeted_challenges = []
 
 # global state, initiated by implementing agent, updated here
 node_info: NodeInfo
